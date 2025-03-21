@@ -1,0 +1,101 @@
+.add-task-form {
+  padding: 40px;
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  width: 70%;
+  max-width: 900px;
+  margin: 80px auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10; /* Ensure the form is above the sidebar */
+  left: 100px; /* Move the form to the right by 100px */
+}
+
+.add-task-form h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+  color: #222;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #444;
+}
+
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: #0078d4;
+  background-color: #eef6ff;
+  outline: none;
+}
+
+.form-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-field button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin-right: 10px;
+}
+
+.form-field button:hover {
+  background-color: #2980b9;
+}
+
+.form-field button.cancel {
+  background-color: #e74c3c;
+}
+
+.form-field button.cancel:hover {
+  background-color: #c0392b;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #0078d4;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.back-button:hover {
+  color: #0056a3;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

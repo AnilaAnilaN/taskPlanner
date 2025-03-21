@@ -1,0 +1,156 @@
+/* Styling for task filters section */
+.task-filters {
+  display: flex; /* Arrange filters horizontally */
+  justify-content: center; /* Center the filters */
+  align-items: center; /* Vertically align the filters */
+  gap: 20px; /* Adds space between the filters */
+  margin-bottom: 20px; /* Adds space below the filters */
+  margin-top: 100px; /* Adds space from the top */
+}
+
+/* Styles for filter dropdowns and inputs */
+.task-filters select, .task-filters input {
+  padding: 10px; /* Adds padding inside input fields */
+  border: 1px solid #ccc; /* Sets a light border */
+  border-radius: 5px; /* Rounds the corners */
+  width: 200px; /* Expands the container width */
+  text-align: center; /* Centers the text inside the dropdowns */
+}
+
+/* Add consistent width to the filter elements */
+.task-filters select {
+  text-align-last: center; /* Centers the selected value in dropdowns */
+}
+
+.task-filters input {
+  text-align: left; /* Keeps the text left-aligned in date input */
+}
+
+/* Styles for task list container */
+.task-list {
+  display: flex; /* Arranges tasks vertically */
+  flex-direction: column; /* Ensures items are in a column */
+  gap: 20px; /* Adds space between tasks */
+  margin-left: 350px; /* Positions task list towards the center */
+}
+
+/* Styles for individual task items */
+.task-item {
+  padding: 20px; /* Adds padding inside each task */
+  border: 1px solid #ccc; /* Adds light border around tasks */
+  border-radius: 10px; /* Rounds task item corners */
+  background-color: #f0f8ff; /* Sets a lighter background color for task items */
+  transition: background-color 0.3s, transform 0.3s; /* Adds transition effects */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+}
+
+/* Hover effects for task items */
+.task-item:hover {
+  background-color: #d1e8ff; /* Changes background color on hover */
+  transform: scale(1.02); /* Slightly scales up the task item on hover */
+}
+
+/* Removes margin from the task title */
+.task-item h3 {
+  margin-top: 0; /* Removes default top margin */
+}
+
+/* Adds consistent spacing between task details */
+.task-item p {
+  margin: 5px 0; /* Adds vertical spacing */
+}
+
+/* Styles for task action buttons container */
+.task-actions {
+  display: flex; /* Arranges buttons horizontally */
+  justify-content: space-between; /* Spaces buttons evenly */
+  align-items: center; /* Vertically centers buttons */
+}
+
+/* Styling for action buttons */
+.task-actions button {
+  padding: 5px 10px; /* Adds padding inside buttons */
+  border: none; /* Removes default border */
+  border-radius: 5px; /* Rounds button corners */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  background-color: #007bff; /* Sets button background color */
+  color: #fff; /* Sets button text color */
+  transition: background-color 0.3s; /* Adds transition effect */
+}
+
+/* Hover effects for action buttons */
+.task-actions button:hover {
+  background-color: #0056b3; /* Changes background color on hover */
+}
+
+/* Styling for the floating add task button */
+.add-task-button {
+  position: fixed; /* Fixes the button at the bottom-right */
+  bottom: 20px; /* Positions it 20px from the bottom */
+  right: 20px; /* Positions it 20px from the right */
+  background-color: #007bff; /* Button color */
+  color: #fff; /* Button text color */
+  font-size: 24px; /* Increases font size */
+  border: none; /* Removes border */
+  padding: 10px; /* Adds padding inside the button */
+  border-radius: 50%; /* Makes the button circular */
+  width: 60px; /* Sets button width */
+  height: 60px; /* Sets button height */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  display: flex; /* Centers "+" inside the button */
+  align-items: center; /* Vertically centers "+" */
+  justify-content: center; /* Horizontally centers "+" */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+  transition: background-color 0.3s, transform 0.3s; /* Adds transition effects */
+}
+
+/* Hover effects for the add task button */
+.add-task-button:hover {
+  background-color: #0056b3; /* Changes background color on hover */
+  transform: scale(1.1); /* Slightly scales up the button on hover */
+}
+
+/* Styles for priority levels */
+.priority.high {
+  color: red; /* Red for high priority */
+}
+
+.priority.medium {
+  color: orange; /* Orange for medium priority */
+}
+
+.priority.low {
+  color: green; /* Green for low priority */
+}
+
+/* Styles for task statuses */
+.status.submitted {
+  color: green; /* Green for submitted tasks */
+}
+
+.status.pending {
+  color: orange; /* Orange for pending tasks */
+}
+
+/* Styles for the "no tasks" message */
+.no-tasks {
+  text-align: center; /* Centers the text */
+  color: #666; /* Sets text color */
+  margin-top: 220px; /* Adds space from the top */
+  
+}
+
+/* Styling for the "Back to Dashboard" link */
+.back-to-dashboard {
+  margin-top: 20px; /* Adds space above the link */
+  display: block; /* Makes it a block element */
+  text-align: center; /* Centers the link */
+  color: #3498db; /* Sets link color */
+  text-decoration: none; /* Removes underline */
+}
+
+/* Adds underline on hover for dashboard link */
+.back-to-dashboard:hover {
+  text-decoration: underline; /* Underlines link when hovered */
+}
+

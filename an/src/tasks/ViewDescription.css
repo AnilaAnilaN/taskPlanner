@@ -1,0 +1,76 @@
+/* Styles for the add task form */
+.add-task-form {
+    padding: 40px; /* Adds padding inside form */
+    background-color: #f9f9f9; /* Sets form background color */
+    border-radius: 10px; /* Rounds form corners */
+    width: 60%; /* Adjusts form width to 60% */
+    max-width: 800px; /* Limits form width */
+    margin: 100px auto 0 auto; /* Centers the form horizontally and adds top margin */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    position: relative; /* Allows absolute positioning of inner elements if needed */
+  }
+  
+  /* Center align the add task form header */
+  .add-task-form h2 {
+    text-align: center; /* Centers the header */
+    margin-bottom: 20px; /* Adds space below the header */
+    color: #333; /* Sets header text color */
+  }
+  
+  /* Adds spacing below each form field */
+  .form-field {
+    margin-bottom: 20px; /* Adds space below each field */
+  }
+  
+  /* Styling for labels */
+  .form-field label {
+    display: block; /* Makes labels block elements */
+    margin-bottom: 5px; /* Adds space below labels */
+    color: #555; /* Sets label text color */
+  }
+  
+  /* Styling for inputs, textareas, and selects inside the form */
+  .form-field input, .form-field textarea, .form-field select {
+    width: 100%; /* Full-width fields */
+    padding: 10px; /* Adds padding inside fields */
+    border: 1px solid #ccc; /* Adds light border */
+    border-radius: 5px; /* Rounds field corners */
+    font-size: 14px; /* Sets font size */
+    transition: border-color 0.3s; /* Adds transition effect */
+  }
+  
+  /* Focus effects for inputs, textareas, and selects */
+  .form-field input:focus, .form-field textarea:focus, .form-field select:focus {
+    border-color: #007bff; /* Changes border color on focus */
+    outline: none; /* Removes default outline */
+  }
+  
+  /* Allows textarea resizing vertically only */
+  .form-field textarea {
+    resize: vertical; /* Restricts resizing to vertical axis */
+  }
+  
+  /* Styling for buttons inside the form */
+  .form-field button {
+    padding: 10px 15px; /* Adds padding inside buttons */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounds button corners */
+    background-color: #3498db; /* Sets button background color */
+    color: white; /* Sets button text color */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+    margin-right: 10px; /* Adds space between buttons */
+    transition: background-color 0.3s; /* Adds transition effect */
+    font-size: 14px; /* Sets font size */
+  }
+  
+  /* Hover effects for form buttons */
+  .form-field button:hover {
+    background-color: #2980b9; /* Changes background color on hover */
+  }
+  
+  /* Styles for the "Cancel" button */
+  .form-field button:last-child {
+    background-color: #e74c3c; /* Sets red color for "Cancel" button */
+  }
+  
+  

@@ -1,0 +1,62 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #08D7F2;
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-left h1 {
+  margin: 0;
+  margin-left: 250px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left img.logo {
+  max-height: 55px;
+  margin-left: 250px;
+  max-width: 300px;
+}
+
+/* Profile icon and text styling */
+.profile-icon-container {
+  display: flex;
+  flex-direction: column; /* Ensures the icon and text are vertically aligned */
+  align-items: center; /* Centers the items horizontally */
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  display: block; /* Ensures the icon behaves like a block element */
+  margin-bottom: 5px; /* Adds space between the icon and text */
+  color: white;
+  align-self: center;
+}
+
+/* Profile text styling */
+.profile-text {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  color: white;
+  text-decoration: unset; /* Removes underline from the text */
+}
+
+.profile-text:hover {
+  text-decoration: none; /* Keeps underline removed on hover */
+}

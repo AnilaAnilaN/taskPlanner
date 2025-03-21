@@ -1,0 +1,98 @@
+.dashboard-container {
+  display: flex; /* Set the layout to flexbox to align items horizontally */
+  height: 100vh; /* Make the container take up the full height of the viewport */
+  background-color: #f8f9fc; /* Set a light background color for the container */
+}
+
+.dashboard-main-content {
+  flex-grow: 1; /* Allow the main content area to grow and fill available space */
+  padding: 20px; /* Add padding inside the main content area */
+}
+
+.dashboard-content {
+  display: flex; /* Use flexbox to organize content vertically */
+  flex-direction: column; /* Arrange content in a vertical column */
+  gap: 20px; /* Add space between content items */
+  margin-left: 250px; /* Create space on the left for the sidebar */
+  margin-top: 100px; /* Add margin on top to position the content lower */
+}
+
+.dashboard-section {
+  background-color: #ffffff; /* Set the background color to white */
+  padding: 20px; /* Add padding inside each section */
+  border-radius: 8px; /* Round the corners of the section */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow around the section */
+}
+
+.dashboard-section h2 {
+  margin-top: 0; /* Remove the default margin at the top of the heading */
+  margin-bottom: 20px; /* Add space below the heading */
+  color: #333; /* Set the text color to dark gray */
+  font-size: 24px; /* Set the font size for the heading */
+  font-weight: 600; /* Make the heading text bold */
+  border-bottom: 2px solid #20b2aa; /* Add a teal border below the heading */
+  padding-bottom: 10px; /* Add padding below the text and above the border */
+}
+
+.dashboard-section table {
+  width: 100%; /* Make the table take up the full width of the container */
+  border-collapse: collapse; /* Remove gaps between table borders */
+  margin-bottom: 20px; /* Add space below the table */
+}
+
+.dashboard-section th, .dashboard-section td {
+  padding: 12px 15px; /* Add padding inside each table cell */
+  text-align: left; /* Align text to the left in the table cells */
+  border-bottom: 1px solid #ddd; /* Add a light gray border below each row */
+  font-size: 16px; /* Set the font size for table text */
+}
+
+
+.edit-task.button{
+background-color: #1e9b91;
+padding-right: 70px;
+color: #2d2c2e;
+cursor: pointer;
+
+
+
+}
+.dashboard-section th {
+  background-color: #20b2aa; /* Set the background color of table headers to teal */
+  color: #fff; /* Set the text color of table headers to white */
+  font-weight: 700; /* Make the header text bold */
+}
+
+.dashboard-section tr:nth-child(even) {
+  background-color: #f9f9f9; /* Set a light background color for even rows */
+}
+
+.dashboard-section tr:hover {
+  background-color: #f1f1f1; /* Change background color when hovering over a row */
+}
+
+.dashboard-section td {
+  color: #555; /* Set the text color of table cells to a medium gray */
+}
+
+.view-tasks-link {
+  display: inline-block; /* Make the link behave like a button */
+  padding: 10px 15px; /* Add padding inside the link */
+  background-color: #20b2aa; /* Set the background color of the link to teal */
+  color: white; /* Set the text color of the link to white */
+  text-decoration: none; /* Remove underline from the link text */
+  border-radius: 4px; /* Slightly round the corners of the link */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow around the link */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and movement */
+}
+
+.view-tasks-link:hover {
+  background-color: #1e9b91; /* Darken the background color when hovered */
+  transform: translateY(-2px); /* Move the link slightly upward when hovered */
+}
+.button{
+  border-radius: 5px;
+  background-color: #1e9b91;
+  margin-top: 5px;
+  padding: 5px 10px;
+}

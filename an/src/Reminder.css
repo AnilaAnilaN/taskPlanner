@@ -1,0 +1,168 @@
+/* General container styles */
+.reminder-container {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  background-color: #f4f4f4;
+  margin-top: 80px; /* Adjusts spacing below the header */
+}
+
+.reminder-content {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Heading and button styles */
+.upcoming-reminders h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.upcoming-reminders p {
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.add-reminder-button,
+.view-all-button {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.add-reminder-button:hover,
+.view-all-button:hover {
+  background-color: #333;
+}
+
+/* Reminder list styles */
+.reminder-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.reminder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.reminder-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.reminder-info span:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.reminder-info span:last-child {
+  font-size: 14px;
+  color: #888;
+}
+
+.reminder-item .reminder-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.reminder-actions button {
+  background-color: #ff5733;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.reminder-actions button:hover {
+  background-color: #e14a20;
+}
+
+/* Add Reminder Form Styling */
+.add-reminder-form {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-reminder-form h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.save-reminder-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.save-reminder-button:hover {
+  background-color: #388e3c;
+}
+
+button[type="button"] {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button[type="button"]:hover {
+  background-color: #c9302c;
+}

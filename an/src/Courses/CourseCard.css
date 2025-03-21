@@ -1,0 +1,50 @@
+course-card {
+  padding: 20px;
+  border-radius: 12px; /* Increased border radius for a smoother look */
+  text-align: center;
+  font-weight: bold;
+  height: 180px; /* Adjusted height to accommodate instructor */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 30px; /* Reduced margin to fit more cards on the screen */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Added a stronger shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
+  cursor: pointer;
+ 
+}
+
+.course-card:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.course-card h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.course-card p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #f0f0f0; /* Lighter text for the instructor */
+}
+
+.course-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.course-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+  transition: color 0.2s ease;
+}
+
+.course-actions button:hover {
+  color: #ffd700; /* Gold highlight on hover */
+}

@@ -1,0 +1,212 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+.study-planner-container {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.sidebar {
+  flex: 0 0 200px;
+}
+
+.study-planner-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  margin-left: 200px; /* Match the sidebar width */
+  margin-top: 70px; /* Height of the header */
+}
+
+.no-sessions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+}
+
+.clock-image {
+  width: 150px;
+  height: 150px;
+}
+
+.no-sessions-text {
+  color: #333;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.study-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid #333;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin-top: 20px;
+}
+
+.study-form label {
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.study-form select, .study-form input, .study-form textarea {
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #333;
+  box-sizing: border-box;
+}
+
+.study-form textarea {
+  resize: vertical;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.notification-option {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.save-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #0b110c;
+  border: none;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  max-width: 220px;
+  transition: background-color 0.3s;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.saved-sessions {
+  text-align: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.sessions-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.session-card {
+  background: #f0f0f0; /* Light gray background */
+  padding: 15px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.session-card h3 {
+  display: none; /* Hide the session ID */
+}
+
+.session-card p {
+  margin: 5px 0;
+}
+
+/* Button Container */
+.button-container {
+  display: flex;
+  justify-content: space-between; /* Space out buttons equally */
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.session-card button {
+  flex: 1; /* Allows buttons to take up equal space */
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button {
+  background-color: #333; /* Dark gray */
+}
+
+.delete-button {
+  background-color: #f44336; /* Red */
+}
+
+.start-button {
+  background-color: #4CAF50; /* Green */
+}
+
+.add-session-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown-timer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 24px;
+  color: #333;
+}

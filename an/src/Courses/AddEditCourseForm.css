@@ -1,0 +1,169 @@
+/* Container for the form */
+.course-form-container {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Form styling */
+.course-form {
+  background: linear-gradient(145deg, #e6f0ff, #b3d1ff);
+  padding: 30px;
+  max-width: 450px;
+  width: 100%;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(0, 123, 255, 0.4);
+  animation: fadeIn 0.6s ease-in-out;
+  transition: transform 0.3s ease;
+}
+
+.course-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 123, 255, 0.5);
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(-20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Form fields */
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  background: linear-gradient(145deg, #f0f8ff, #d6eaff);
+}
+
+.input-field:focus {
+  border-color: #00BFFF;
+  box-shadow: 0 0 8px rgba(0, 191, 255, 0.4);
+  outline: none;
+}
+
+/* Color selection circle */
+.color-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.color-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.color-palette {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.color-option {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.color-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Buttons Container */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Uniform button styling */
+.form-buttons button {
+  width: 48%; /* Both buttons take equal width */
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  display: inline-block; /* Ensure buttons align properly */
+}
+
+/* Submit button */
+.submit-button {
+  background-color: #007BFF;
+  color: white;
+  box-shadow: 0 4px 0px #0056b3;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0px #003d7a;
+}
+
+/* Cancel button */
+.cancel-button {
+  background-color: #000;
+  color: white;
+  box-shadow: 0 4px 0px #333;
+}
+
+.cancel-button:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0px #000;
+}
+
+/* Error message styling */
+.error-message {
+  background-color: #ffe6e6;
+  color: #ff0000;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}

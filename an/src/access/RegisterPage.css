@@ -1,0 +1,100 @@
+/* Overall page styling */
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f8f9fc;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+  padding-top: 105px; /* Add padding to avoid overlap with the header */
+  padding-bottom: 40px;
+}
+
+/* Form container styling */
+.register-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Title styling */
+.register-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Form styling */
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Full width of the container */
+}
+
+/* Label styling for each input title */
+.form-label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+/* Input field styling */
+.form-input {
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Input focus state */
+.form-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Submit button styling */
+.register-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+/* Footer text */
+.footer-text {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.75rem;
+  color: #666;
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+  width: 100%;
+}

@@ -1,0 +1,75 @@
+.auth-header {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  align-items: center; /* Centers the logo vertically */
+  padding: 10px 20px;
+  background-color: #08D7F2;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 70px; /* Increased header height to allow for a larger logo */
+  overflow: hidden; /* Ensures content stays within header bounds */
+}
+
+/* Logo container styling */
+.logo {
+  display: flex;
+  justify-content: center; /* Centers the logo horizontally */
+  align-items: center; /* Centers the logo vertically */
+  height: 100%; /* Takes the full height of the header */
+  flex-grow: 0;
+  flex-basis: auto;
+}
+
+/* Image styling for larger size (zoomed in) */
+.logo img {
+  height: 135%; /* Zoomed in to increase visibility of image contents */
+  width: auto; /* Maintains aspect ratio */
+  max-width: 700px; /* Prevents the logo from becoming too wide */
+  object-fit: contain; /* Ensures the image fits properly without distortion */
+}
+
+/* Adjusted Button Positioning */
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+  position: absolute; /* Moves buttons to their own position */
+  right: 30px; /* Positions the buttons on the right */
+  top: 50%; /* Vertically center buttons */
+  transform: translateY(-50%); /* Adjusts position for perfect vertical centering */
+  margin-right: 20px;
+}
+
+/* Button Styling */
+.auth-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100px;
+  text-align: center;
+  transition: opacity 0.3s;
+  font-weight: bold;
+}
+
+.login-btn {
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #000;
+}
+
+.signup-btn {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #fff;
+}
+
+/* Hover effect for buttons */
+.auth-btn:hover {
+  opacity: 0.9;
+}

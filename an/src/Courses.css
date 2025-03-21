@@ -1,0 +1,114 @@
+courses-container {
+  display: flex;
+  height: calc(100vh - 60px); /* Assuming the header is 60px high */
+  padding-top: 60px; /* To account for the header height */
+}
+
+.courses-main-content {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f8f9fc;
+  margin-left: 250px; /* Adjust based on your sidebar width */
+}
+
+.course-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  height: 150px;
+  margin-top: 50px;
+
+}
+
+.course-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-course-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course-form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.course-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.course-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.course-form input[type="text"],
+.course-form input[type="color"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.course-form .form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.course-form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.course-form button:first-child {
+  background-color: #000;
+  color: white;
+}
+
+.course-form button:last-child {
+  background-color: #ccc;
+  color: black;
+}
