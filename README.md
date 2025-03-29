@@ -3,6 +3,7 @@
 The Student Task Planner is a full-stack web application built using the MERN stack (MongoDB, Express.js, React, and Node.js). It is designed to help students manage their academic tasks efficiently by providing a structured platform for task organization, scheduling, and progress tracking.
 
 ✨ Features
+
 ✅ Task Management – Create, update, and delete tasks with due dates.
 
 📅 Schedule & Reminders – Set deadlines and receive notifications for upcoming tasks.
@@ -82,6 +83,7 @@ Track Progress – Mark tasks as completed or update statuses.
 Organize – Use filters to sort tasks based on priority, deadlines, or subjects.
 
 🛠 Future Enhancements
+
 📌 Calendar View – Visualize tasks on a calendar.
 
 📲 Mobile App – React Native version for mobile users.
