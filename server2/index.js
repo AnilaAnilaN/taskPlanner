@@ -14,10 +14,10 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '../Uploads')));
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('error', (error) => console.error('MongoDB connection error:', error));
 mongoose.connection.once('open', () => console.log('Connected to MongoDB'));
@@ -92,7 +92,7 @@ const Feedback = mongoose.model('Feedback', feedbackSchema);
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
+  destination: (req, file, cb) => cb(null, '../Uploads/'),
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
 
@@ -115,7 +115,6 @@ const authenticateJWT = (req, res, next) => {
 };
 
 // API Endpoints
-
 // 1. Task Routes
 app.get('/api/tasks', authenticateJWT, async (req, res) => {
   try {
@@ -291,7 +290,7 @@ app.delete('/api/profile', authenticateJWT, async (req, res) => {
     await User.findByIdAndDelete(req.user.userId);
     res.json({ message: 'Account closed successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Failed to close account', error });
+    res.status(500).json({ message: 'Failed to delete account', error });
   }
 });
 
@@ -353,7 +352,7 @@ app.delete('/api/study-sessions/:id', authenticateJWT, async (req, res) => {
 // 5. Reminder Routes
 app.get('/api/reminders/user', authenticateJWT, async (req, res) => {
   try {
-    const reminders = await Reminder.find({ userId: req.user.userId });
+    const reminders = await Task.find({ userId: req.user.userId });
     res.json(reminders);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch reminders', error });
@@ -416,13 +415,14 @@ app.post('/api/feedback', async (req, res) => {
     await newFeedback.save();
     res.status(200).json({ message: 'Feedback submitted successfully!' });
   } catch (error) {
-    res.status( лицом500).json({ message: 'Failed to submit feedback', error });
+    res.status(500).json({ message: 'Failed to submit feedback', error });
   }
 });
 
+// Serve frontend in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'an/build')));
-  app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'an/build', 'index.html')));
+  app.use(express.static(path.join(__dirname, '../an/dist')));
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../an/dist', 'index.html')));
 }
 
 // Start the server
