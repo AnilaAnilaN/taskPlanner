@@ -1,30 +1,41 @@
 {
-  "name": "server2",
+  "name": "taskplanner",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "MERN stack student task planner",
+  "main": "server2/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server2/index.js",
+    "server": "nodemon server2/index.js",
+    "client": "npm start --prefix an",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "npm install --prefix an && npm run build --prefix an",
+    "render-build": "npm install && npm install --prefix an && npm run build --prefix an"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "engines": {
+    "node": "22.16.0"
+  },
   "dependencies": {
-    "bcrypt": "^5.1.1",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.3",
-    "connect-mongo": "^5.1.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
     "express": "^4.21.1",
-    "express-session": "^1.18.1",
-    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.1",
+    "dotenv": "^16.4.5",
+    "cors": "^2.8.5",
+    "body-parser": "^1.20.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
-    "node-cron": "^3.0.3",
-    "node-schedule": "^2.1.1",
     "nodemailer": "^6.9.15",
+    "node-cron": "^3.0.3",
+    "express-session": "^1.18.1",
+    "connect-mongo": "^5.1.0"
+  },
+  "devDependencies": {
     "nodemon": "^3.1.7",
-    "path": "^0.12.7"
-  }
+    "concurrently": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AnilaAnilaN/taskPlanner.git"
+  },
+  "author": "AnilaAnilaN",
+  "license": "ISC"
 }
