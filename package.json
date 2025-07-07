@@ -2,14 +2,14 @@
   "name": "taskplanner",
   "version": "1.0.0",
   "description": "MERN stack student task planner",
-  "main": "server2/index.js.js",
+  "main": "server2/index.js",
   "scripts": {
     "start": "node server2/index.js",
     "server": "nodemon server2/index.js",
     "client": "npm start --prefix an",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "npm install --prefix an && npm run build --prefix an",
-    "render-build": "npm install && npm run build"
+    "render-build": "npm install && npm install --prefix an && npm run build --prefix an"
   },
   "engines": {
     "node": "22.16.0"
