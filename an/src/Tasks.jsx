@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getTasks, createTask, updateTask, deleteTask, getCourses } from './api'; // Import API functions
 import Sidebar from './Sidebar';
 import Header from './Header';
 import TaskList from './tasks/TaskList';
@@ -15,6 +15,7 @@ const Tasks = () => {
   const [selectedTask, setSelectedTask] = useState(null);
   const [filters, setFilters] = useState({ priority: '', course: '', date: '' });
   const [sort, setSort] = useState('title');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchTasks();
@@ -23,56 +24,62 @@ const Tasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/tasks');
+      const response = await getTasks(); // Use getTasks from api.js
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
+      setError('Failed to fetch tasks. Please try again.');
     }
   };
 
   const fetchCourses = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/courses');
+      const response = await getCourses(); // Use getCourses from api.js
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
+      setError('Failed to fetch courses. Please try again.');
     }
   };
 
   const addTask = async (task) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/tasks', task);
+      const response = await createTask(task); // Use createTask from api.js
       setTasks([...tasks, response.data]);
     } catch (error) {
       console.error('Error adding task:', error);
+      setError('Failed to add task. Please try again.');
     }
   };
 
   const updateTaskStatus = async (id, status) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/tasks/${id}`, { status });
+      const response = await updateTask(id, { status }); // Use updateTask from api.js
       setTasks(tasks.map(task => (task._id === id ? response.data : task)));
     } catch (error) {
       console.error('Error updating task status:', error);
+      setError('Failed to update task status. Please try again.');
     }
   };
 
   const updateTask = async (task) => {
     try {
-      const response = await axios.put(`http://localhost:5000/api/tasks/${task._id}`, task);
+      const response = await updateTask(task._id, task); // Use updateTask from api.js
       setTasks(tasks.map(t => (t._id === task._id ? response.data : t)));
       setView('list');
     } catch (error) {
       console.error('Error updating task:', error);
+      setError('Failed to update task. Please try again.');
     }
   };
 
   const deleteTask = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${taskId}`);
+      await deleteTask(taskId); // Use deleteTask from api.js
       setTasks(tasks.filter(task => task._id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
+      setError('Failed to delete task. Please try again.');
     }
   };
 
@@ -81,6 +88,7 @@ const Tasks = () => {
       <Sidebar />
       <div className="main-content">
         <Header title="Tasks" />
+        {error && <p className="error">{error}</p>}
         {view === 'list' && <TaskList
           tasks={tasks}
           courses={courses}
@@ -91,7 +99,7 @@ const Tasks = () => {
           setView={setView}
           setSelectedTask={setSelectedTask}
           updateTaskStatus={updateTaskStatus}
-          deleteTask={deleteTask} // Pass the deleteTask function to TaskList
+          deleteTask={deleteTask}
         />}
         {view === 'add' && <AddTask
           addTask={addTask}
