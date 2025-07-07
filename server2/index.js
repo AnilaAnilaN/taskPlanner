@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use('/uploads', express.static(path.join(__dirname, 'uploads'))); // Serve static files from 'uploads' directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI);
@@ -22,8 +22,7 @@ mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.on('error', (error) => console.error('MongoDB connection error:', error));
 mongoose.connection.once('open', () => console.log('Connected to MongoDB'));
 
-// Schema and Models
-
+// Schemas and Models
 const taskSchema = new mongoose.Schema({
   title: String,
   category: String,
@@ -32,13 +31,15 @@ const taskSchema = new mongoose.Schema({
   description: String,
   priority: String,
   status: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 const courseSchema = new mongoose.Schema({
   name: String,
   instructor: String,
   color: String,
-  file: { type: String, default: '' }, // File path or URL
+  file: { type: String, default: '' },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 const userSchema = new mongoose.Schema({
@@ -53,13 +54,14 @@ const userSchema = new mongoose.Schema({
 });
 
 const studySessionSchema = new mongoose.Schema({
-  name: String, // Add the name field
+  name: String,
   course: String,
   date: Date,
   startTime: String,
   endTime: String,
   notes: String,
   enableNotifications: Boolean,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 const reminderSchema = new mongoose.Schema({
@@ -67,17 +69,11 @@ const reminderSchema = new mongoose.Schema({
   time: String,
   category: String,
   selectedTask: String,
-  userEmail: String, // Add userEmail field to store the user's email
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Reference to the user
-  date: Date, // Add the date field
+  userEmail: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  date: Date,
 });
 
-// Models
-const Task = mongoose.model('Task', taskSchema);
-const Course = mongoose.model('Course', courseSchema);
-const User = mongoose.model('User', userSchema);
-const StudySession = mongoose.model('StudySession', studySessionSchema);
-const Reminder = mongoose.model('Reminder', reminderSchema);
 const feedbackSchema = new mongoose.Schema({
   name: String,
   email: String,
@@ -86,12 +82,18 @@ const feedbackSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
 });
 
+// Models
+const Task = mongoose.model('Task', taskSchema);
+const Course = mongoose.model('Course', courseSchema);
+const User = mongoose.model('User', userSchema);
+const StudySession = mongoose.model('StudySession', studySessionSchema);
+const Reminder = mongoose.model('Reminder', reminderSchema);
 const Feedback = mongoose.model('Feedback', feedbackSchema);
 
 // Multer configuration for file uploads
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'), // Directory to store uploaded files
-  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`), // Create unique filenames
+  destination: (req, file, cb) => cb(null, 'uploads/'),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
 
 const upload = multer({ storage });
@@ -115,21 +117,22 @@ const authenticateJWT = (req, res, next) => {
 // API Endpoints
 
 // 1. Task Routes
-
-// Get all tasks
-app.get('/api/tasks', async (req, res) => {
+app.get('/api/tasks', authenticateJWT, async (req, res) => {
   try {
-    const tasks = await Task.find();
+    const tasks = await Task.find({ userId: req.user.userId });
     res.json(tasks);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch tasks', error });
   }
 });
 
-// Create a new task
-app.post('/api/tasks', async (req, res) => {
+app.post('/api/tasks', authenticateJWT, async (req, res) => {
   try {
-    const newTask = new Task({ ...req.body, dueDate: new Date(req.body.dueDate) });
+    const newTask = new Task({
+      ...req.body,
+      dueDate: new Date(req.body.dueDate),
+      userId: req.user.userId,
+    });
     await newTask.save();
     res.json(newTask);
   } catch (error) {
@@ -137,20 +140,31 @@ app.post('/api/tasks', async (req, res) => {
   }
 });
 
-// Update a task by ID
-app.put('/api/tasks/:id', async (req, res) => {
+app.put('/api/tasks/:id', authenticateJWT, async (req, res) => {
   try {
-    const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedTask = await Task.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.userId },
+      req.body,
+      { new: true }
+    );
+    if (!updatedTask) {
+      return res.status(404).json({ message: 'Task not found or not authorized' });
+    }
     res.json(updatedTask);
   } catch (error) {
     res.status(500).json({ message: 'Failed to update task', error });
   }
 });
 
-// Delete a task by ID
-app.delete('/api/tasks/:id', async (req, res) => {
+app.delete('/api/tasks/:id', authenticateJWT, async (req, res) => {
   try {
-    await Task.findByIdAndDelete(req.params.id);
+    const deletedTask = await Task.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user.userId,
+    });
+    if (!deletedTask) {
+      return res.status(404).json({ message: 'Task not found or not authorized' });
+    }
     res.json({ message: 'Task deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete task', error });
@@ -158,21 +172,21 @@ app.delete('/api/tasks/:id', async (req, res) => {
 });
 
 // 2. Course Routes
-
-// Get all courses
-app.get('/api/courses', async (req, res) => {
+app.get('/api/courses', authenticateJWT, async (req, res) => {
   try {
-    const courses = await Course.find();
+    const courses = await Course.find({ userId: req.user.userId });
     res.json(courses);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch courses', error });
   }
 });
 
-// Create a new course
-app.post('/api/courses', async (req, res) => {
+app.post('/api/courses', authenticateJWT, async (req, res) => {
   try {
-    const newCourse = new Course(req.body);
+    const newCourse = new Course({
+      ...req.body,
+      userId: req.user.userId,
+    });
     await newCourse.save();
     res.json(newCourse);
   } catch (error) {
@@ -180,20 +194,31 @@ app.post('/api/courses', async (req, res) => {
   }
 });
 
-// Update a course by ID
-app.put('/api/courses/:id', async (req, res) => {
+app.put('/api/courses/:id', authenticateJWT, async (req, res) => {
   try {
-    const updatedCourse = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const updatedCourse = await Course.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.userId },
+      req.body,
+      { new: true }
+    );
+    if (!updatedCourse) {
+      return res.status(404).json({ message: 'Course not found or not authorized' });
+    }
     res.json(updatedCourse);
   } catch (error) {
     res.status(500).json({ message: 'Failed to update course', error });
   }
 });
 
-// Delete a course by ID
-app.delete('/api/courses/:id', async (req, res) => {
+app.delete('/api/courses/:id', authenticateJWT, async (req, res) => {
   try {
-    await Course.findByIdAndDelete(req.params.id);
+    const deletedCourse = await Course.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user.userId,
+    });
+    if (!deletedCourse) {
+      return res.status(404).json({ message: 'Course not found or not authorized' });
+    }
     res.json({ message: 'Course deleted' });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete course', error });
@@ -201,8 +226,6 @@ app.delete('/api/courses/:id', async (req, res) => {
 });
 
 // 3. User Routes
-
-// User registration
 app.post('/api/register', async (req, res) => {
   try {
     const { name, email, password, college, fieldOfStudy, yearOfStudy, securityQuestion, securityAnswer } = req.body;
@@ -224,10 +247,9 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
-// Get user profile
 app.get('/api/profile', authenticateJWT, async (req, res) => {
   try {
-    const user = await User.findById(req.user.userId, { password: 0 }); // Exclude password from the response
+    const user = await User.findById(req.user.userId, { password: 0 });
     if (!user) return res.status(404).json({ message: 'User not found' });
     res.json(user);
   } catch (error) {
@@ -235,7 +257,6 @@ app.get('/api/profile', authenticateJWT, async (req, res) => {
   }
 });
 
-// Update user profile
 app.put('/api/profile', authenticateJWT, async (req, res) => {
   try {
     const updatedUser = await User.findByIdAndUpdate(req.user.userId, req.body, { new: true });
@@ -245,7 +266,6 @@ app.put('/api/profile', authenticateJWT, async (req, res) => {
   }
 });
 
-// User login
 app.post('/api/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -262,12 +282,10 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// User logout
 app.post('/api/logout', authenticateJWT, (req, res) => {
   res.json({ message: 'Logout successful' });
 });
 
-// Close user account
 app.delete('/api/profile', authenticateJWT, async (req, res) => {
   try {
     await User.findByIdAndDelete(req.user.userId);
@@ -278,23 +296,21 @@ app.delete('/api/profile', authenticateJWT, async (req, res) => {
 });
 
 // 4. Study Session Routes
-
-// Get all study sessions
-app.get('/api/study-sessions', async (req, res) => {
+app.get('/api/study-sessions', authenticateJWT, async (req, res) => {
   try {
-    const sessions = await StudySession.find();
+    const sessions = await StudySession.find({ userId: req.user.userId });
     res.json(sessions);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch study sessions', error });
   }
 });
 
-// Create a new study session
-app.post('/api/study-sessions', async (req, res) => {
+app.post('/api/study-sessions', authenticateJWT, async (req, res) => {
   try {
     const newSession = new StudySession({
       ...req.body,
       date: new Date(req.body.date),
+      userId: req.user.userId,
     });
     await newSession.save();
     res.json(newSession);
@@ -303,27 +319,31 @@ app.post('/api/study-sessions', async (req, res) => {
   }
 });
 
-// Update a study session by ID
-app.put('/api/study-sessions/:id', async (req, res) => {
+app.put('/api/study-sessions/:id', authenticateJWT, async (req, res) => {
   try {
-    const updatedSession = await StudySession.findByIdAndUpdate(
-      req.params.id,
-      {
-        ...req.body,
-        date: new Date(req.body.date),
-      },
+    const updatedSession = await StudySession.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.userId },
+      { ...req.body, date: new Date(req.body.date) },
       { new: true }
     );
+    if (!updatedSession) {
+      return res.status(404).json({ message: 'Study session not found or not authorized' });
+    }
     res.json(updatedSession);
   } catch (error) {
     res.status(500).json({ message: 'Failed to update study session', error });
   }
 });
 
-// Delete a study session by ID
-app.delete('/api/study-sessions/:id', async (req, res) => {
+app.delete('/api/study-sessions/:id', authenticateJWT, async (req, res) => {
   try {
-    await StudySession.findByIdAndDelete(req.params.id);
+    const deletedSession = await StudySession.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user.userId,
+    });
+    if (!deletedSession) {
+      return res.status(404).json({ message: 'Study session not found or not authorized' });
+    }
     res.json({ message: 'Study session deleted' });
   } catch (error) {
     res.status(500).json({ message: 'Failed to delete study session', error });
@@ -331,8 +351,6 @@ app.delete('/api/study-sessions/:id', async (req, res) => {
 });
 
 // 5. Reminder Routes
-
-// Get all reminders for the logged-in user
 app.get('/api/reminders/user', authenticateJWT, async (req, res) => {
   try {
     const reminders = await Reminder.find({ userId: req.user.userId });
@@ -342,14 +360,13 @@ app.get('/api/reminders/user', authenticateJWT, async (req, res) => {
   }
 });
 
-// Create a new reminder
 app.post('/api/reminders', authenticateJWT, async (req, res) => {
   try {
     const newReminder = new Reminder({
       ...req.body,
-      userEmail: req.user.email, // Store the user's email
-      userId: req.user.userId, // Store the user's ID
-      date: new Date(req.body.date), // Convert the date string to a Date object
+      userEmail: req.user.email,
+      userId: req.user.userId,
+      date: new Date(req.body.date),
     });
     await newReminder.save();
     res.json(newReminder);
@@ -359,19 +376,16 @@ app.post('/api/reminders', authenticateJWT, async (req, res) => {
   }
 });
 
-// Update a reminder by ID
 app.put('/api/reminders/:id', authenticateJWT, async (req, res) => {
   try {
-    const updatedReminder = await Reminder.findByIdAndUpdate(
-      req.params.id,
-      {
-        ...req.body,
-        userEmail: req.user.email, // Update the user's email
-        userId: req.user.userId, // Update the user's ID
-        date: new Date(req.body.date), // Convert the date string to a Date object
-      },
+    const updatedReminder = await Reminder.findOneAndUpdate(
+      { _id: req.params.id, userId: req.user.userId },
+      { ...req.body, userEmail: req.user.email, date: new Date(req.body.date) },
       { new: true }
     );
+    if (!updatedReminder) {
+      return res.status(404).json({ message: 'Reminder not found or not authorized' });
+    }
     res.json(updatedReminder);
   } catch (error) {
     console.error('Error updating reminder:', error);
@@ -379,10 +393,15 @@ app.put('/api/reminders/:id', authenticateJWT, async (req, res) => {
   }
 });
 
-// Delete a reminder by ID
-app.delete('/api/reminders/:id', async (req, res) => {
+app.delete('/api/reminders/:id', authenticateJWT, async (req, res) => {
   try {
-    await Reminder.findByIdAndDelete(req.params.id);
+    const deletedReminder = await Reminder.findOneAndDelete({
+      _id: req.params.id,
+      userId: req.user.userId,
+    });
+    if (!deletedReminder) {
+      return res.status(404).json({ message: 'Reminder not found or not authorized' });
+    }
     res.json({ message: 'Reminder deleted' });
   } catch (error) {
     console.error('Error deleting reminder:', error);
@@ -390,16 +409,14 @@ app.delete('/api/reminders/:id', async (req, res) => {
   }
 });
 
-// Feedback Routes
-
-// Create a new feedback
+// 6. Feedback Routes
 app.post('/api/feedback', async (req, res) => {
   try {
     const newFeedback = new Feedback(req.body);
     await newFeedback.save();
     res.status(200).json({ message: 'Feedback submitted successfully!' });
   } catch (error) {
-    res.status(500).json({ message: 'Failed to submit feedback', error });
+    res.status( лицом500).json({ message: 'Failed to submit feedback', error });
   }
 });
 
