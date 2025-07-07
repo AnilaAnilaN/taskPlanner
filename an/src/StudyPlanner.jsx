@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getStudySessions, createStudySession, updateStudySession, deleteStudySession, getCourses } from './api'; // Import API functions
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './StudyPlanner.css';
@@ -8,7 +8,7 @@ const StudyPlanner = () => {
   const [sessions, setSessions] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    name: '', // Add the name field to the form data
+    name: '',
     course: '',
     date: '',
     startTime: '',
@@ -19,6 +19,7 @@ const StudyPlanner = () => {
   const [courses, setCourses] = useState([]);
   const [currentSession, setCurrentSession] = useState(null);
   const [timeLeft, setTimeLeft] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (Notification.permission !== 'granted') {
@@ -57,13 +58,23 @@ const StudyPlanner = () => {
   }, [currentSession]);
 
   const fetchCourses = async () => {
-    const response = await axios.get('http://localhost:5000/api/courses');
-    setCourses(response.data);
+    try {
+      const response = await getCourses(); // Use getCourses from api.js
+      setCourses(response.data);
+    } catch (error) {
+      console.error('Error fetching courses:', error);
+      setError('Failed to fetch courses. Please try again.');
+    }
   };
 
   const fetchStudySessions = async () => {
-    const response = await axios.get('http://localhost:5000/api/study-sessions');
-    setSessions(response.data);
+    try {
+      const response = await getStudySessions(); // Use getStudySessions from api.js
+      setSessions(response.data);
+    } catch (error) {
+      console.error('Error fetching study sessions:', error);
+      setError('Failed to fetch study sessions. Please try again.');
+    }
   };
 
   const handleFormChange = (e) => {
@@ -91,26 +102,29 @@ const StudyPlanner = () => {
       duration: (endHour - startHour) * 60 + (endMinute - startMinute),
     };
 
-    if (formData._id) {
-      await axios.put(`http://localhost:5000/api/study-sessions/${formData._id}`, sessionData);
-    } else {
-      await axios.post('http://localhost:5000/api/study-sessions', sessionData);
+    try {
+      if (formData._id) {
+        await updateStudySession(formData._id, sessionData); // Use updateStudySession from api.js
+      } else {
+        await createStudySession(sessionData); // Use createStudySession from api.js
+      }
+      scheduleNotification('Study Session Starts Now!', startTime);
+      scheduleNotification('Study Session Ends Now!', endTime);
+      setFormData({
+        name: '',
+        course: '',
+        date: '',
+        startTime: '',
+        endTime: '',
+        notes: '',
+        enableNotifications: false,
+      });
+      setShowForm(false);
+      fetchStudySessions();
+    } catch (error) {
+      console.error('Error saving study session:', error);
+      setError('Failed to save study session. Please try again.');
     }
-
-    scheduleNotification('Study Session Starts Now!', startTime);
-    scheduleNotification('Study Session Ends Now!', endTime);
-
-    setFormData({
-      name: '', // Reset the name field
-      course: '',
-      date: '',
-      startTime: '',
-      endTime: '',
-      notes: '',
-      enableNotifications: false,
-    });
-    setShowForm(false);
-    fetchStudySessions();
   };
 
   const scheduleNotification = (message, time) => {
@@ -127,14 +141,19 @@ const StudyPlanner = () => {
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/study-sessions/${id}`);
-    fetchStudySessions();
+    try {
+      await deleteStudySession(id); // Use deleteStudySession from api.js
+      fetchStudySessions();
+    } catch (error) {
+      console.error('Error deleting study session:', error);
+      setError('Failed to delete study session. Please try again.');
+    }
   };
 
   const handleEdit = (session) => {
     setFormData({
       _id: session._id,
-      name: session.name, // Set the name field
+      name: session.name,
       course: session.course,
       date: new Date(session.date).toISOString().split('T')[0],
       startTime: session.startTime,
@@ -171,6 +190,7 @@ const StudyPlanner = () => {
       <div className="main-content">
         <Sidebar />
         <div className="study-planner-content">
+          {error && <p className="error">{error}</p>}
           {!sessions.length && !showForm && (
             <div className="no-sessions">
               <img src="clock.png" alt="Clock" className="clock-image" />
@@ -230,7 +250,7 @@ const StudyPlanner = () => {
                 {sessions.map((session) => (
                   <div key={session._id} className="session-card">
                     <h3>Session {session._id}</h3>
-                    <p>Name: {session.name}</p> {/* Display the name field */}
+                    <p>Name: {session.name}</p>
                     <p>Course: {session.course}</p>
                     <p>Date: {new Date(session.date).toLocaleDateString()}</p>
                     <p>Start Time: {session.startTime}</p>
