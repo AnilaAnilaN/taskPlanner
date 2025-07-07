@@ -352,7 +352,7 @@ app.delete('/api/study-sessions/:id', authenticateJWT, async (req, res) => {
 // 5. Reminder Routes
 app.get('/api/reminders/user', authenticateJWT, async (req, res) => {
   try {
-    const reminders = await Task.find({ userId: req.user.userId });
+    const reminders = await Reminder.find({ userId: req.user.userId });
     res.json(reminders);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch reminders', error });
