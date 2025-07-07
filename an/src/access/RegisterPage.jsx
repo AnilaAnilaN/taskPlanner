@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { register } from '../api';
 import AuthHeader from './AuthHeader';
 import './RegisterPage.css';
 
@@ -13,7 +13,10 @@ const RegisterPage = () => {
     college: '',
     fieldOfStudy: '',
     yearOfStudy: '',
+    securityQuestion: '',
+    securityAnswer: '',
   });
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,12 +26,12 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('api/register', formData);
+      await register(formData);
       alert('Registration successful! Please log in using your credentials.');
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
-      alert('Registration failed. Please try again.');
+      setError('Registration failed. Please try again.');
     }
   };
 
@@ -37,6 +40,7 @@ const RegisterPage = () => {
       <AuthHeader />
       <div className="register-container">
         <h2>Register</h2>
+        {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <label htmlFor="name" className="form-label">Name</label>
           <input
@@ -105,6 +109,30 @@ const RegisterPage = () => {
             name="yearOfStudy"
             placeholder="Enter Your Year of Study"
             value={formData.yearOfStudy}
+            onChange={handleChange}
+            required
+            className="form-input"
+          />
+
+          <label htmlFor="securityQuestion" className="form-label">Security Question</label>
+          <input
+            type="text"
+            id="securityQuestion"
+            name="securityQuestion"
+            placeholder="Enter Your Security Question"
+            value={formData.securityQuestion}
+            onChange={handleChange}
+            required
+            className="form-input"
+          />
+
+          <label htmlFor="securityAnswer" className="form-label">Security Answer</label>
+          <input
+            type="text"
+            id="securityAnswer"
+            name="securityAnswer"
+            placeholder="Enter Your Security Answer"
+            value={formData.securityAnswer}
             onChange={handleChange}
             required
             className="form-input"
