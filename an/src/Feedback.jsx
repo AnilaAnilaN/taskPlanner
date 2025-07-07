@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
+import { submitFeedback } from './api'; // Import submitFeedback
 import Header from './Header';
 import Sidebar from './Sidebar';
-import axios from 'axios';
 import './Feedback.css';
-
 
 const Feedback = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  
-
   const [type, setType] = useState('Feature Request');
   const [message, setMessage] = useState('');
   const [alert, setAlert] = useState('');
@@ -17,31 +14,21 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/feedback', {
-        name,
-        
-        email,
-        type,
-        message,
-      });
-      if (response.status === 200) {
-        setAlert('Feedback submitted successfully!');
-        // Clear the form fields after submission
-        setName('');
-        setEmail('');
-        setType('Feature Request');
-        setMessage('');
-        
-      }
+      await submitFeedback({ name, email, type, message }); // Use submitFeedback from api.js
+      setAlert('Feedback submitted successfully!');
+      setName('');
+      setEmail('');
+      setType('Feature Request');
+      setMessage('');
     } catch (error) {
-      setAlert('Failed to submit feedback. Please try again.');
       console.error('Error submitting feedback:', error);
+      setAlert('Failed to submit feedback. Please try again.');
     }
   };
 
   return (
     <div className="feedback-page">
-     <Header/>
+      <Header />
       <div className="feedback-container">
         <Sidebar />
         <div className="feedback-form-container">
@@ -60,7 +47,6 @@ const Feedback = () => {
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="email">Email Address</label>
                 <input
@@ -80,7 +66,6 @@ const Feedback = () => {
                   onChange={(e) => setType(e.target.value)}
                   required
                 >
-                 
                   <option value="Feature Request">Feature Request</option>
                   <option value="Bug Report">Bug Report</option>
                   <option value="General Feedback">General Feedback</option>
