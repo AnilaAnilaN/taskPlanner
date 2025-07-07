@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { getProfile, updateProfile, logoutUser, deleteProfile } from './api'; // Import API functions
 import Header from './Header';
 import Sidebar from './Sidebar';
-import './Profile.css'; // Add CSS for styling
+import './Profile.css';
 
-const Profile = ({ setProfileImage, profileImage, onLogout }) => {
+const Profile = ({ onLogout }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -14,9 +14,9 @@ const Profile = ({ setProfileImage, profileImage, onLogout }) => {
     fieldOfStudy: '',
     yearOfStudy: '',
   });
-  const [localProfileImage, setLocalProfileImage] = useState(profileImage);
-  const [loading, setLoading] = useState(true); // Track loading state
-  const [error, setError] = useState(null); // Handle errors
+  const [localProfileImage, setLocalProfileImage] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchUserProfile();
@@ -24,17 +24,12 @@ const Profile = ({ setProfileImage, profileImage, onLogout }) => {
 
   const fetchUserProfile = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/profile', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await getProfile(); // Use getProfile from api.js
       setFormData(response.data);
     } catch (err) {
       console.error('Error fetching profile:', err);
       if (err.response?.status === 401) {
-        alert('Session expired. Please log in again.');
+        setError('Session expired. Please log in again.');
         navigate('/login');
       } else {
         setError('Failed to fetch profile. Please try again later.');
@@ -55,7 +50,6 @@ const Profile = ({ setProfileImage, profileImage, onLogout }) => {
       const reader = new FileReader();
       reader.onload = () => {
         setLocalProfileImage(reader.result);
-        setProfileImage(reader.result); // Update the global state
       };
       reader.readAsDataURL(file);
     }
@@ -64,55 +58,40 @@ const Profile = ({ setProfileImage, profileImage, onLogout }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await axios.put('http://localhost:5000/api/profile', formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await updateProfile(formData); // Use updateProfile from api.js
       alert('Profile updated successfully!');
       navigate('/dashboard');
     } catch (error) {
       console.error('Failed to update profile:', error);
-      alert('Failed to update profile. Please try again.');
+      setError('Failed to update profile. Please try again.');
     }
   };
 
   const handleLogout = async () => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/logout', {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await logoutUser(); // Use logoutUser from api.js
       onLogout();
       navigate('/login');
     } catch (error) {
       console.error('Failed to log out:', error);
-      alert('Failed to log out. Please try again.');
+      setError('Failed to log out. Please try again.');
     }
   };
 
   const handleCloseAccount = async () => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.delete('http://localhost:5000/api/profile', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await deleteProfile(); // Use deleteProfile from api.js
       alert('Account closed successfully!');
       onLogout();
       navigate('/login');
     } catch (error) {
       console.error('Failed to close account:', error);
-      alert('Failed to close account. Please try again.');
+      setError('Failed to close account. Please try again.');
     }
   };
 
   if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+  if (error) return <div className="error">{error}</div>;
 
   return (
     <div className="profile-page">
