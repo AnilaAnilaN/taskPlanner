@@ -29,9 +29,6 @@ export const deleteCourse = (id) => api.delete(`/api/courses/${id}`);
 
 export const register = (user) => api.post('/api/register', user);
 export const login = (credentials) => api.post('/api/login', credentials);
-export const getProfile = () => api.get('/api/profile');
-export const updateProfile = (user) => api.put('/api/profile', user);
-export const deleteProfile = () => api.delete('/api/profile');
 
 export const getStudySessions = () => api.get('/api/study-sessions');
 export const createStudySession = (session) => api.post('/api/study-sessions', session);
