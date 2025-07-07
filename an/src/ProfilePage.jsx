@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getProfile, updateProfile, deleteProfile } from '../api'; // Import API functions
+import { getProfile, updateProfile, deleteProfile } from './api'; // Import API functions
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './ProfilePage.css';
