@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { getReminders, createReminder, updateReminder, deleteReminder } from './api'; // Import API functions
 import Header from './Header';
 import Sidebar from './Sidebar';
 import './Reminder.css';
@@ -15,8 +15,9 @@ const Reminder = ({ tasks }) => {
     category: '',
     selectedTask: '',
     date: '',
-    relativeTime: '', // Add the relativeTime field
+    relativeTime: '',
   });
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchReminders();
@@ -25,15 +26,12 @@ const Reminder = ({ tasks }) => {
 
   const fetchReminders = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/reminders/user', {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
-        }
-      });
+      const response = await getReminders(); // Use getReminders from api.js
       setReminders(response.data);
       checkReminders(response.data);
     } catch (error) {
       console.error('Error fetching reminders:', error);
+      setError('Failed to fetch reminders. Please try again.');
     }
   };
 
@@ -55,16 +53,12 @@ const Reminder = ({ tasks }) => {
 
   const checkReminders = reminders => {
     reminders.forEach(reminder => {
-      const selectedTask = tasks.find(task => task._id === reminder.selectedTask);
+      const dueDate = new Date(reminder.date); // Use reminder.date from reminderSchema
+      const now = new Date();
+      const timeDifference = dueDate - now;
 
-      if (selectedTask) {
-        const dueDate = new Date(selectedTask.dueDate);
-        const now = new Date();
-        const timeDifference = dueDate - now;
-
-        if (timeDifference <= 24 * 60 * 60 * 1000 && timeDifference > 0) {
-          showNotification('Reminder', `You have a reminder for ${reminder.name} on ${dueDate.toLocaleDateString()}.`);
-        }
+      if (timeDifference <= 24 * 60 * 60 * 1000 && timeDifference > 0) {
+        showNotification('Reminder', `You have a reminder for ${reminder.name} on ${dueDate.toLocaleDateString()}.`);
       }
     });
   };
@@ -98,33 +92,25 @@ const Reminder = ({ tasks }) => {
 
       const newReminderData = {
         ...newReminder,
-        name: selectedTask ? selectedTask.title : '',
-        date: selectedTask ? selectedTask.dueDate : '',
+        name: selectedTask ? selectedTask.title : newReminder.name,
+        date: selectedTask ? selectedTask.dueDate : newReminder.date,
       };
 
       if (isEditing) {
-        await axios.put(`http://localhost:5000/api/reminders/${editingReminderId}`, newReminderData, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        });
-        setReminders(reminders.map(reminder => (reminder._id === editingReminderId ? newReminderData : reminder)));
+        await updateReminder(editingReminderId, newReminderData); // Use updateReminder from api.js
+        setReminders(reminders.map(reminder => (reminder._id === editingReminderId ? { ...reminder, ...newReminderData } : reminder)));
       } else {
-        const response = await axios.post('http://localhost:5000/api/reminders', newReminderData, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
-          }
-        });
+        const response = await createReminder(newReminderData); // Use createReminder from api.js
         setReminders([...reminders, response.data]);
       }
 
       setIsAdding(false);
       setIsEditing(false);
       setNewReminder({ name: '', time: '', category: '', selectedTask: '', date: '', relativeTime: '' });
-
       showNotification('Reminder Created', `Reminder for ${newReminderData.name} has been created.`);
     } catch (error) {
       console.error('Error saving reminder:', error);
+      setError('Failed to save reminder. Please try again.');
     }
   };
 
@@ -145,10 +131,11 @@ const Reminder = ({ tasks }) => {
 
   const handleDelete = async id => {
     try {
-      await axios.delete(`http://localhost:5000/api/reminders/${id}`);
+      await deleteReminder(id); // Use deleteReminder from api.js
       setReminders(reminders.filter(reminder => reminder._id !== id));
     } catch (error) {
       console.error('Error deleting reminder:', error);
+      setError('Failed to delete reminder. Please try again.');
     }
   };
 
@@ -158,6 +145,7 @@ const Reminder = ({ tasks }) => {
       <div className="reminder-container">
         <Sidebar />
         <div className="reminder-content">
+          {error && <p className="error">{error}</p>}
           {!isAdding ? (
             <div className="upcoming-reminders">
               <h2>Upcoming Reminders</h2>
@@ -167,9 +155,7 @@ const Reminder = ({ tasks }) => {
               </button>
               <ul className="reminder-list">
                 {reminders.map(reminder => {
-                  const selectedTask = tasks.find(task => task._id === reminder.selectedTask);
-
-                  const dueDate = selectedTask ? new Date(selectedTask.dueDate) : null;
+                  const dueDate = new Date(reminder.date);
 
                   return (
                     <li key={reminder._id} className="reminder-item">
