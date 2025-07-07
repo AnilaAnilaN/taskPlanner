@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTasks, getStudySessions } from '../api'; // Import API functions
+import { getTasks, getStudySessions } from './api'; // Import API functions
 import Sidebar from './Sidebar';
 import Header from './Header';
 import './Dashboard.css';
