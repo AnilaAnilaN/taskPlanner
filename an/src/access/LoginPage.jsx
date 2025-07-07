@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { login, getReminders } from '../api';
 import AuthHeader from './AuthHeader';
 import './LoginPage.css';
 
@@ -8,34 +8,30 @@ const LoginPage = ({ onLogin }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
- 
+  const [error, setError] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('api/login', { email, password });
+      const response = await login({ email, password });
       localStorage.setItem('token', response.data.token);
       alert('Login successful!');
-      onLogin(); // Call the onLogin function passed as a prop
-      fetchReminders();
+      onLogin();
+      await fetchReminders();
       navigate('/dashboard');
     } catch (error) {
       console.error('Login error:', error);
-      alert('Invalid email or password. Please try again.');
+      setError('Invalid email or password. Please try again.');
     }
   };
 
   const fetchReminders = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/reminders/user', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      });
+      const response = await getReminders();
       checkReminders(response.data);
     } catch (error) {
       console.error('Error fetching reminders:', error);
+      setError('Failed to fetch reminders.');
     }
   };
 
@@ -63,12 +59,12 @@ const LoginPage = ({ onLogin }) => {
 
   const checkReminders = (reminders) => {
     reminders.forEach(reminder => {
-      const dueDate = new Date(reminder.dueDate);
+      const dueDate = new Date(reminder.date); // Updated to match reminderSchema
       const now = new Date();
       const timeDifference = dueDate - now;
 
       if (timeDifference <= 24 * 60 * 60 * 1000 && timeDifference > 0) {
-        showNotification('Reminder', `You have a reminder for ${reminder.name} on ${reminder.dueDate}.`);
+        showNotification('Reminder', `You have a reminder for ${reminder.name} on ${reminder.date}.`);
       }
     });
   };
@@ -78,6 +74,7 @@ const LoginPage = ({ onLogin }) => {
       <AuthHeader />
       <div className="login-container">
         <h2>Login</h2>
+        {error && <p className="error">{error}</p>}
         <form onSubmit={handleLogin}>
           <label htmlFor="email" className="form-label">Email</label>
           <input
@@ -100,8 +97,6 @@ const LoginPage = ({ onLogin }) => {
             required
             className="form-input"
           />
-           
-
 
           <div className="forgot-password">
             <Link to="/forgot-password">Forgot Password? Click here</Link>
