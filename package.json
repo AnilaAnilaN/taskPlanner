@@ -2,9 +2,9 @@
   "name": "taskplanner",
   "version": "1.0.0",
   "description": "MERN stack student task planner",
-  "main": "server.js",
+  "main": "index.js.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix an",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
