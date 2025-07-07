@@ -43,6 +43,13 @@ export const createReminder = (reminder) => api.post('/api/reminders', reminder)
 export const updateReminder = (id, reminder) => api.put(`/api/reminders/${id}`, reminder);
 export const deleteReminder = (id) => api.delete(`/api/reminders/${id}`);
 
+// Profile-related APIs
+export const getProfile = () => api.get('/api/profile');
+export const updateProfile = (data) => api.put('/api/profile', data);
+export const deleteProfile = () => api.delete('/api/profile');
+export const logoutUser = () => api.post('/api/logout');
+
+
 export const submitFeedback = (feedback) => api.post('/api/feedback', feedback);
 
 export default api;
