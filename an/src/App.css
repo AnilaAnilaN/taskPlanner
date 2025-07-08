@@ -159,31 +159,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
-  .sidebar {
-    width: 50px;
-  }
 
-  .app-container:has(.sidebar) .main-content {
-    margin-left: 50px;
-  }
-
-  .app-container:has(.sidebar.collapsed) .main-content {
-    margin-left: 50px;
-  }
-
-  .main-content {
-    padding: 40px 10px 10px;
-  }
-
-  .page-container {
-    padding: 40px 10px 10px;
-  }
-
-  .form-container {
-    padding: 1rem;
-  }
-}
 
 
 @media (max-width: 768px) {
