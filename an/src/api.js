@@ -27,7 +27,7 @@ export const createCourse = (course) => api.post('/api/courses', course);
 export const updateCourse = (id, course) => api.put(`/api/courses/${id}`, course);
 export const deleteCourse = (id) => api.delete(`/api/courses/${id}`);
 
-/ Authentication-related APIs
+// Authentication-related APIs
 export const registerUser = (userData) => api.post('/api/register', userData);
 export const loginUser = (credentials) => api.post('/api/login', credentials);
 
