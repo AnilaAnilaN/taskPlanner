@@ -1,98 +1,174 @@
+/* Dashboard Container */
 .dashboard-container {
-  display: flex; /* Set the layout to flexbox to align items horizontally */
-  height: 100vh; /* Make the container take up the full height of the viewport */
-  background-color: #f8f9fc; /* Set a light background color for the container */
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fc;
 }
 
-.dashboard-main-content {
-  flex-grow: 1; /* Allow the main content area to grow and fill available space */
-  padding: 20px; /* Add padding inside the main content area */
-}
-
+/* Dashboard Content */
 .dashboard-content {
-  display: flex; /* Use flexbox to organize content vertically */
-  flex-direction: column; /* Arrange content in a vertical column */
-  gap: 20px; /* Add space between content items */
-  margin-left: 250px; /* Create space on the left for the sidebar */
-  margin-top: 100px; /* Add margin on top to position the content lower */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 800px; /* Matches form-container max-width */
 }
 
+/* Dashboard Section */
 .dashboard-section {
-  background-color: #ffffff; /* Set the background color to white */
-  padding: 20px; /* Add padding inside each section */
-  border-radius: 8px; /* Round the corners of the section */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow around the section */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
 }
 
+/* Section Heading */
 .dashboard-section h2 {
-  margin-top: 0; /* Remove the default margin at the top of the heading */
-  margin-bottom: 20px; /* Add space below the heading */
-  color: #333; /* Set the text color to dark gray */
-  font-size: 24px; /* Set the font size for the heading */
-  font-weight: 600; /* Make the heading text bold */
-  border-bottom: 2px solid #20b2aa; /* Add a teal border below the heading */
-  padding-bottom: 10px; /* Add padding below the text and above the border */
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-bottom: 2px solid #4A90E2; /* Matches header */
+  padding-bottom: 10px;
 }
 
+/* Table Wrapper for Responsive Scroll */
+.dashboard-section .table-wrapper {
+  overflow-x: auto;
+}
+
+/* Table Styling */
 .dashboard-section table {
-  width: 100%; /* Make the table take up the full width of the container */
-  border-collapse: collapse; /* Remove gaps between table borders */
-  margin-bottom: 20px; /* Add space below the table */
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.dashboard-section th, .dashboard-section td {
-  padding: 12px 15px; /* Add padding inside each table cell */
-  text-align: left; /* Align text to the left in the table cells */
-  border-bottom: 1px solid #ddd; /* Add a light gray border below each row */
-  font-size: 16px; /* Set the font size for table text */
+.dashboard-section th,
+.dashboard-section td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.9rem;
 }
 
-
-.edit-task.button{
-background-color: #1e9b91;
-padding-right: 70px;
-color: #2d2c2e;
-cursor: pointer;
-
-
-
-}
 .dashboard-section th {
-  background-color: #20b2aa; /* Set the background color of table headers to teal */
-  color: #fff; /* Set the text color of table headers to white */
-  font-weight: 700; /* Make the header text bold */
+  background-color: #4A90E2; /* Matches header */
+  color: #fff;
+  font-weight: bold;
 }
 
 .dashboard-section tr:nth-child(even) {
-  background-color: #f9f9f9; /* Set a light background color for even rows */
+  background-color: #f9f9f9;
 }
 
 .dashboard-section tr:hover {
-  background-color: #f1f1f1; /* Change background color when hovering over a row */
+  background-color: #f1f1f1;
 }
 
 .dashboard-section td {
-  color: #555; /* Set the text color of table cells to a medium gray */
+  color: #333;
 }
 
+/* View Tasks Link */
 .view-tasks-link {
-  display: inline-block; /* Make the link behave like a button */
-  padding: 10px 15px; /* Add padding inside the link */
-  background-color: #20b2aa; /* Set the background color of the link to teal */
-  color: white; /* Set the text color of the link to white */
-  text-decoration: none; /* Remove underline from the link text */
-  border-radius: 4px; /* Slightly round the corners of the link */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow around the link */
-  transition: background-color 0.3s, transform 0.2s; /* Smooth transition for background color and movement */
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #50C878; /* Matches signup/register */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
 .view-tasks-link:hover {
-  background-color: #1e9b91; /* Darken the background color when hovered */
-  transform: translateY(-2px); /* Move the link slightly upward when hovered */
+  background-color: #45A563; /* Darker green */
+  transform: translateY(-2px);
 }
-.button{
-  border-radius: 5px;
-  background-color: #1e9b91;
+
+/* Error Message */
+.error {
+  color: #E57373; /* Matches LoginPage/RegisterPage */
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+/* Button Styling (for potential edit buttons) */
+.edit-task-button,
+.button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #50C878;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s;
   margin-top: 5px;
-  padding: 5px 10px;
+}
+
+.edit-task-button:hover,
+.button:hover {
+  background-color: #45A563;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .dashboard-content {
+    max-width: 100%;
+    padding: 0 10px;
+  }
+
+  .dashboard-section {
+    padding: 15px;
+  }
+
+  .dashboard-section h2 {
+    font-size: 1.3rem;
+  }
+
+  .dashboard-section th,
+  .dashboard-section td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .view-tasks-link,
+  .edit-task-button,
+  .button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-section {
+    padding: 10px;
+  }
+
+  .dashboard-section h2 {
+    font-size: 1.2rem;
+  }
+
+  .dashboard-section th,
+  .dashboard-section td {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .view-tasks-link,
+  .edit-task-button,
+  .button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
 }
