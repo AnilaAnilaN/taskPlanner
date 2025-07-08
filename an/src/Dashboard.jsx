@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-to-dom';
+import { Link } from 'react-router-dom';
 import { getTasks, getStudySessions } from './api';
 import Sidebar from './Sidebar';
 import Header from './Header';
