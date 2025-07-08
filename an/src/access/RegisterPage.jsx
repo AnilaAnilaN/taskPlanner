@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../api';
+import { registerUser } from '../api';
 import AuthHeader from './AuthHeader';
 import './RegisterPage.css';
 
@@ -24,7 +24,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register(formData);
+      await registerUser(formData);
       alert('Registration successful! Please log in using your credentials.');
       navigate('/login');
     } catch (error) {
