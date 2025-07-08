@@ -2,17 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDashboard, faBook, faTasks, faCalendarAlt, faBell, faComment, faBars } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faDashboard, 
+  faBook, 
+  faTasks, 
+  faCalendarAlt, 
+  faBell, 
+  faComment, 
+  faBars 
+} from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(window.innerWidth >= 768);
+  const [isOpen, setIsOpen] = useState(() => {
+    // Initialize based on screen width
+    return typeof window !== 'undefined' ? window.innerWidth >= 768 : true;
+  });
 
   useEffect(() => {
     const handleResize = () => {
-      setIsOpen(window.innerWidth >= 768);
+      // On mobile, keep sidebar collapsed by default
+      if (window.innerWidth < 768) {
+        setIsOpen(false);
+      } else {
+        setIsOpen(true);
+      }
     };
 
     window.addEventListener('resize', handleResize);
+    // Call handler right away to set initial state
+    handleResize();
+
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
