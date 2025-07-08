@@ -1,42 +1,38 @@
-/* Header styling */
 .auth-header {
   display: flex;
-  justify-content: space-between; /* Logo left, buttons right */
+  justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #4A90E2; /* Calming blue for student app */
+  background-color: #4A90E2;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 60px; /* Reduced height for better mobile fit */
+  height: 60px;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Logo container styling */
 .logo {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-/* Logo image styling */
-.logo img {
-  height: 40px; /* Smaller for mobile, maintains clarity */
-  width: auto;
-  max-width: 200px; /* Prevents overflow */
-  object-fit: contain;
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Button container styling */
 .auth-buttons {
   display: flex;
-  gap: 10px; /* Reduced gap for tighter layout */
+  gap: 10px;
 }
 
-/* Button styling */
 .auth-btn {
   padding: 8px 16px;
   font-size: 0.9rem;
@@ -46,66 +42,58 @@
   text-align: center;
   transition: background-color 0.3s;
   font-weight: bold;
-  min-width: 80px; /* Smaller buttons for mobile */
+  min-width: 80px;
 }
 
 .login-btn {
-  background-color: #007bff; /* Matches form buttons */
+  background-color: #007bff;
   color: #fff;
 }
 
 .signup-btn {
-  background-color: #50C878; /* Vibrant green for signup */
+  background-color: #50C878;
   color: #fff;
 }
 
-/* Hover effect for buttons */
 .auth-btn:hover {
   opacity: 0.9;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .auth-header {
-    flex-direction: column; /* Stack logo and buttons */
-    height: auto;
-    padding: 10px;
+    flex-direction: row;
+    padding: 8px 15px;
+    height: 50px;
   }
 
-  .logo {
-    margin-bottom: 10px;
-  }
-
-  .logo img {
-    height: 30px; /* Smaller logo on mobile */
-    max-width: 150px;
+  .logo-text {
+    font-size: 1.2rem;
   }
 
   .auth-buttons {
-    flex-direction: row;
-    gap: 8px;
+    gap: 5px;
   }
 
   .auth-btn {
-    padding: 6px 12px;
+    padding: 5px 10px;
     font-size: 0.8rem;
-    min-width: 70px;
+    min-width: 60px;
   }
 }
 
 @media (max-width: 480px) {
   .auth-header {
-    padding: 8px;
+    padding: 6px 10px;
+    height: 45px;
   }
 
-  .logo img {
-    height: 25px;
-    max-width: 120px;
+  .logo-text {
+    font-size: 1rem;
   }
 
   .auth-btn {
-    padding: 5px 10px;
+    padding: 4px 8px;
     font-size: 0.75rem;
-    min-width: 60px;
+    min-width: 50px;
   }
 }
