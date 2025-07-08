@@ -36,134 +36,95 @@ const Dashboard = () => {
   };
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
   };
 
   const formatTime = (timeString) => {
-    const [start, end] = timeString.split(' - ');
-    const format = (time) => {
-      const [hours, minutes] = time.split(':');
-      const hour = parseInt(hours, 10);
-      return `${hour > 12 ? hour - 12 : hour}:${minutes} ${hour >= 12 ? 'PM' : 'AM'}`;
-    };
-    return `${format(start)} - ${format(end)}`;
+    const [startTime, endTime] = timeString.split(' - ');
+    return `${startTime} - ${endTime}`;
   };
 
   const calculateDuration = (startTime, endTime) => {
-    const start = new Date(`1970-01-01T${startTime}:00`);
-    const end = new Date(`1970-01-01T${endTime}:00`);
-    const diffMs = end - start;
-    
-    const hours = Math.floor(diffMs / (1000 * 60 * 60));
-    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60);
-    
-    if (hours > 0 && minutes > 0) {
-      return `${hours}h ${minutes}m`;
-    } else if (hours > 0) {
-      return `${hours}h`;
-    } else {
-      return `${minutes}m`;
-    }
+    const start = new Date(`1970-01-01T${startTime}Z`);
+    const end = new Date(`1970-01-01T${endTime}Z`);
+    const duration = end - start;
+    const hours = Math.floor(duration / (1000 * 60 * 60));
+    const minutes = Math.floor((duration % (1000 * 60 * 60)) / (1000 * 60));
+    return `${hours}h ${minutes}m`;
   };
 
   const upcomingDeadlines = tasks
     .filter(task => task.status !== 'Completed')
-    .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))
     .slice(0, 3);
 
-  const upcomingSessions = studySessions
-    .filter(session => new Date(session.date) >= new Date())
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
-    .slice(0, 3);
+  const upcomingSessions = studySessions.slice(0, 3);
 
   return (
     <div className="dashboard-container">
       <Sidebar />
       <div className="main-content">
         <Header />
-        <div className="dashboard-content">
-          {error && <div className="error-message">{error}</div>}
-          
-          <div className="dashboard-section">
-            <h2>Upcoming Task Deadlines</h2>
-            <div className="table-responsive">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Task</th>
-                    <th>Course</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {upcomingDeadlines.length > 0 ? (
-                    upcomingDeadlines.map(task => (
-                      <tr key={task._id}>
-                        <td>{formatDate(task.dueDate)}</td>
-                        <td>{task.title}</td>
-                        <td>{task.course}</td>
-                        <td>
-                          <span className={`status-badge ${task.status.toLowerCase()}`}>
-                            {task.status}
-                          </span>
-                        </td>
+        <div className="page-container">
+          <div className="dashboard-main">
+            <div className="dashboard-content">
+              {error && <p className="error">{error}</p>}
+              <div className="dashboard-section">
+                <h2>Upcoming Task Deadlines</h2>
+                <div className="table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Task Category</th>
+                        <th>Status</th>
+                        <th>Course</th>
                       </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className="no-tasks">
-                        No upcoming deadlines
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className="view-all-container">
-              <Link to="/tasks" className="view-all-link">
-                View All Tasks →
-              </Link>
-            </div>
-          </div>
-
-          <div className="dashboard-section">
-            <h2>Upcoming Study Sessions</h2>
-            <div className="table-responsive">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Duration</th>
-                    <th>Course</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {upcomingSessions.length > 0 ? (
-                    upcomingSessions.map(session => (
-                      <tr key={session._id}>
-                        <td>{formatDate(session.date)}</td>
-                        <td>{formatTime(`${session.startTime} - ${session.endTime}`)}</td>
-                        <td>{calculateDuration(session.startTime, session.endTime)}</td>
-                        <td>{session.course}</td>
+                    </thead>
+                    <tbody>
+                      {upcomingDeadlines.map(task => (
+                        <tr key={task._id}>
+                          <td>{formatDate(task.dueDate)}</td>
+                          <td>{task.category}</td>
+                          <td>{task.status}</td>
+                          <td>{task.course}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <Link to="/tasks" className="view-tasks-link">
+                  View All Tasks
+                </Link>
+              </div>
+              <div className="dashboard-section">
+                <h2>Upcoming Study Sessions</h2>
+                <div className="table-wrapper">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Duration</th>
+                        <th>Course</th>
                       </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className="no-sessions">
-                        No upcoming study sessions
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className="view-all-container">
-              <Link to="/study-sessions" className="view-all-link">
-                View All Sessions →
-              </Link>
+                    </thead>
+                    <tbody>
+                      {upcomingSessions.map(session => (
+                        <tr key={session._id}>
+                          <td>{formatDate(session.date)}</td>
+                          <td>{formatTime(`${session.startTime} - ${session.endTime}`)}</td>
+                          <td>{calculateDuration(session.startTime, session.endTime)}</td>
+                          <td>{session.course}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <Link to="/study-sessions" className="view-tasks-link">
+                  View All Sessions
+                </Link>
+              </div>
             </div>
           </div>
         </div>
