@@ -25,8 +25,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 100%; /* Expand to full width */
-  padding: 0 20px; /* Add 20px padding on sides for larger screens */
+  width: 100%;
+  max-width: calc(100% - 250px); /* Center within remaining space */
+  margin: 0 auto; /* Center horizontally */
+  padding: 0 20px;
 }
 
 /* Dashboard Section */
@@ -51,16 +53,14 @@
 
 /* Table Wrapper for Responsive Scroll */
 .table-wrapper {
-  overflow-x: auto; /* Ensure horizontal scroll on small devices */
-  min-width: 0; /* Prevent content collapse */
+  overflow-x: auto;
 }
 
 /* Table Styling */
 .dashboard-section table {
-  width: 100%; /* Ensure tables expand to container width */
+  width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
-  table-layout: auto; /* Allow natural column sizing */
 }
 
 .dashboard-section th,
@@ -69,7 +69,6 @@
   text-align: left;
   border-bottom: 1px solid #ddd;
   font-size: 0.9rem;
-  white-space: nowrap; /* Prevent text wrapping on small devices */
 }
 
 .dashboard-section th {
@@ -146,11 +145,8 @@
   }
 
   .dashboard-content {
-    padding: 0 10px; /* Reduce padding on smaller screens */
-  }
-
-  .table-wrapper {
-    overflow-x: auto; /* Ensure scrollable on small devices */
+    max-width: calc(100% - 60px); /* Adjust for collapsed sidebar */
+    padding: 0 10px;
   }
 
   .dashboard-section {
@@ -181,7 +177,7 @@
   }
 
   .dashboard-content {
-    padding: 0 10px; /* Maintain reduced padding */
+    max-width: calc(100% - 50px); /* Adjust for smaller collapsed sidebar */
   }
 
   .dashboard-section {
