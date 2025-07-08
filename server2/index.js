@@ -49,8 +49,6 @@ const userSchema = new mongoose.Schema({
   college: String,
   fieldOfStudy: String,
   yearOfStudy: String,
-  securityQuestion: String,
-  securityAnswer: String,
 });
 
 const studySessionSchema = new mongoose.Schema({
