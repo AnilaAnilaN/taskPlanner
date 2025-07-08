@@ -41,14 +41,25 @@ body {
 }
 
 .sidebar li:hover {
-  background-color: #50C878; /* Matches updated Sidebar.css */
+  background-color: #50C878;
 }
 
+/* Main content with dynamic margin for sidebar */
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 70px 20px 20px; /* Adjusted for 60px header */
-  margin-left: 250px; /* Space for sidebar */
+  padding: 70px 20px 20px;
+  margin-left: 0; /* No margin for pages without sidebar */
+}
+
+/* Apply margin when sidebar is present */
+.app-container:has(.sidebar) .main-content {
+  margin-left: 250px;
+}
+
+/* Adjust for collapsed sidebar */
+.app-container:has(.sidebar.collapsed) .main-content {
+  margin-left: 60px;
 }
 
 .page-container {
@@ -88,8 +99,15 @@ body {
     width: 60px; /* Collapsed by default */
   }
 
-  .main-content {
+  .app-container:has(.sidebar) .main-content {
     margin-left: 60px;
+  }
+
+  .app-container:has(.sidebar.collapsed) .main-content {
+    margin-left: 60px;
+  }
+
+  .main-content {
     padding: 80px 15px 15px;
   }
 
@@ -108,8 +126,15 @@ body {
     width: 50px;
   }
 
-  .main-content {
+  .app-container:has(.sidebar) .main-content {
     margin-left: 50px;
+  }
+
+  .app-container:has(.sidebar.collapsed) .main-content {
+    margin-left: 50px;
+  }
+
+  .main-content {
     padding: 60px 10px 10px;
   }
 
