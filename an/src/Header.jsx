@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-// Import your logo
-import logo from './assets/LogoAab.png';
+import logo from '../assets/LogoAab.png';
 
 const Header = ({ profileImage }) => {
   return (
     <header className="header">
       <div className="header-left">
-      
-       </div>
+        <div className="logo">
+          <img src={logo} alt="Student Task Planner Logo" />
+        </div>
+      </div>
       <div className="header-right">
         <div className="profile-icon-container">
           <Link to="/profile" className="profile-link">
