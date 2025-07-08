@@ -56,7 +56,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 105px; /* Space for header */
+  padding-top: 80px; /* Space for fixed header */
   padding-bottom: 40px; /* Space for footer */
 }
 
@@ -71,6 +71,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
 }
 
 .footer-text {
@@ -96,6 +107,10 @@ body {
     padding: 1.5rem;
     max-width: 90%;
   }
+
+  .page-container {
+    padding-top: 70px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -111,7 +126,7 @@ body {
   }
 
   .page-container {
-    padding-top: 80px;
+    padding-top: 60px;
     padding-bottom: 60px;
   }
 
