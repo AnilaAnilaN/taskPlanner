@@ -13,13 +13,13 @@ import Profile from './Profile';
 import './App.css';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null); // null for loading state
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('isAuthenticated');
+    setIsAuthenticated(!!loggedIn); // Set to true/false after checking
     if (loggedIn) {
-      setIsAuthenticated(true);
       fetchTasks();
     }
   }, []);
@@ -51,43 +51,47 @@ const App = () => {
   };
 
   const PrivateRoute = ({ element: Component, ...rest }) => {
-    return isAuthenticated ? <Component {...rest} /> : <Navigate to="/login" />;
+    return isAuthenticated === true ? <Component {...rest} /> : <Navigate to="/login" />;
   };
+
+  // Loading state to prevent flicker
+  if (isAuthenticated === null) {
+    return <div>Loading...</div>; // Simple loading indicator
+  }
 
   return (
     <Router>
-      <div className="app-container">
-        {!isAuthenticated ? (
+      <div className={`app-container ${isAuthenticated ? 'authenticated' : ''}`}>
+        {!isAuthenticated && (
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
             <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
-        ) : (
-          <>
-            <main className="main-content">
-              <Routes>
-                <Route path="/" element={<PrivateRoute element={Dashboard} />} />
-                <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
-                <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
-                <Route path="/courses" element={<PrivateRoute element={Courses} />} />
-                <Route path="/study-planner" element={<PrivateRoute element={StudyPlanner} />} />
-                <Route path="/feedback" element={<PrivateRoute element={Feedback} />} />
-                <Route
-                  path="/reminder"
-                  element={<PrivateRoute element={() => <Reminder tasks={tasks} />} />}
-                />
-                <Route
-                  path="/profile"
-                  element={
-                    <PrivateRoute
-                      element={() => <Profile onLogout={handleLogout} onCloseAccount={handleCloseAccount} />}
-                    />
-                  }
-                />
-              </Routes>
-            </main>
-          </>
+        )}
+        {isAuthenticated && (
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<PrivateRoute element={Dashboard} />} />
+              <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
+              <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
+              <Route path="/courses" element={<PrivateRoute element={Courses} />} />
+              <Route path="/study-planner" element={<PrivateRoute element={StudyPlanner} />} />
+              <Route path="/feedback" element={<PrivateRoute element={Feedback} />} />
+              <Route
+                path="/reminder"
+                element={<PrivateRoute element={() => <Reminder tasks={tasks} />} />}
+              />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute
+                    element={() => <Profile onLogout={handleLogout} onCloseAccount={handleCloseAccount} />}
+                  />
+                }
+              />
+            </Routes>
+          </main>
         )}
       </div>
     </Router>
