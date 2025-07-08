@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { getTasks } from './api'; // Import getTasks
+import { getTasks } from './api';
 import Dashboard from './Dashboard';
 import Tasks from './Tasks';
 import Courses from './Courses';
@@ -9,7 +9,6 @@ import LoginPage from './access/LoginPage';
 import RegisterPage from './access/RegisterPage';
 import Feedback from './Feedback';
 import Reminder from './Reminder';
-import ForgotPassword from './access/ForgotPassword';
 import Profile from './Profile';
 import './App.css';
 
@@ -27,7 +26,7 @@ const App = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await getTasks(); // Use getTasks from api.js
+      const response = await getTasks();
       setTasks(response.data);
     } catch (error) {
       console.error('Failed to fetch tasks:', error);
@@ -41,7 +40,6 @@ const App = () => {
   };
 
   const handleLogout = () => {
-    setWhatsAppNotifications(false);
     setIsAuthenticated(false);
     localStorage.removeItem('isAuthenticated');
     localStorage.removeItem('token');
@@ -63,7 +61,6 @@ const App = () => {
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/" element={<PrivateRoute element={Dashboard} />} />
             <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
             <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
