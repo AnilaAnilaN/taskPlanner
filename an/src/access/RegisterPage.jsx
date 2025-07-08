@@ -13,8 +13,6 @@ const RegisterPage = () => {
     college: '',
     fieldOfStudy: '',
     yearOfStudy: '',
-    securityQuestion: '',
-    securityAnswer: '',
   });
   const [error, setError] = useState('');
 
@@ -109,30 +107,6 @@ const RegisterPage = () => {
             name="yearOfStudy"
             placeholder="Enter Your Year of Study"
             value={formData.yearOfStudy}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-
-          <label htmlFor="securityQuestion" className="form-label">Security Question</label>
-          <input
-            type="text"
-            id="securityQuestion"
-            name="securityQuestion"
-            placeholder="Enter Your Security Question"
-            value={formData.securityQuestion}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-
-          <label htmlFor="securityAnswer" className="form-label">Security Answer</label>
-          <input
-            type="text"
-            id="securityAnswer"
-            name="securityAnswer"
-            placeholder="Enter Your Security Answer"
-            value={formData.securityAnswer}
             onChange={handleChange}
             required
             className="form-input"
