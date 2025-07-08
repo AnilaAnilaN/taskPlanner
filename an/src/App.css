@@ -23,11 +23,15 @@ body {
   width: 250px;
   background-color: #2C3E50;
   color: white;
+  min-height: 100vh; /* Ensure full vertical height */
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+  flex-grow: 1; /* Allow content to grow within height */
 }
 
 .sidebar li {
