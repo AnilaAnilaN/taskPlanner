@@ -11,6 +11,8 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  max-width: calc(100% - 250px); /* Limit width to center within available space */
+  margin: 0 auto; /* Center horizontally */
   padding: 0 20px;
 }
 
@@ -124,6 +126,7 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .dashboard-content {
+    max-width: calc(100% - 60px); /* Adjust for collapsed sidebar */
     padding: 0 10px;
   }
 
@@ -150,6 +153,10 @@
 }
 
 @media (max-width: 480px) {
+  .dashboard-content {
+    max-width: calc(100% - 50px); /* Adjust for smaller collapsed sidebar */
+  }
+
   .dashboard-section {
     padding: 10px;
   }
