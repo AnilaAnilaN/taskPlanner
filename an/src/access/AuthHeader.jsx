@@ -6,7 +6,10 @@ const AuthHeader = () => {
   return (
     <header className="auth-header">
       <div className="logo">
-        <span className="logo-text">assignMate</span>
+        <span className="logo-text">
+          <span className="logo-text-assign">assign</span>
+          <span className="logo-text-mate">Mate</span>
+        </span>
       </div>
       <div className="auth-buttons">
         <Link to="/login">
