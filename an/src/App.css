@@ -1,7 +1,22 @@
+/* Global styles for the application */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fc;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .app-container {
   display: flex;
-  height: 100vh;
-
+  min-height: 100vh;
 }
 
 .sidebar {
@@ -31,6 +46,76 @@
 
 .main-content {
   flex-grow: 1;
-  background-color:#f8f9fc;
+  background-color: #f8f9fc;
   padding: 20px;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 105px; /* Space for header */
+  padding-bottom: 40px; /* Space for footer */
+}
+
+.form-container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-text {
+  position: absolute;
+  bottom: 20px;
+  font-size: 0.75rem;
+  color: #666;
+  text-align: center;
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .page-container {
+    padding-top: 80px;
+    padding-bottom: 60px;
+  }
+
+  .form-container {
+    padding: 1rem;
+  }
 }
