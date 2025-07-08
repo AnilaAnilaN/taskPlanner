@@ -54,9 +54,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Center vertically */
+  justify-content: center;
   min-height: 100vh;
-  padding: 80px 20px 20px; /* Space for header, reduced bottom padding */
+  padding: 70px 20px 20px; /* Adjusted for 60px header */
 }
 
 .form-container {
@@ -72,24 +72,13 @@ body {
   align-items: center;
 }
 
-header {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px 20px;
-}
-
 .footer-text {
   font-size: 0.75rem;
   color: #666;
   text-align: center;
   width: 100%;
   padding: 1rem 0;
-  margin-top: 1rem; /* Space between form and footer */
+  margin-top: 1rem;
 }
 
 /* Responsive design */
@@ -108,7 +97,7 @@ header {
   }
 
   .page-container {
-    padding: 70px 15px 15px;
+    padding: 80px 15px 15px; /* Adjusted for taller header on tablets */
   }
 }
 
@@ -125,7 +114,7 @@ header {
   }
 
   .page-container {
-    padding: 60px 10px 10px;
+    padding: 60px 10px 10px; /* Adjusted for smaller header */
   }
 
   .form-container {
