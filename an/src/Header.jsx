@@ -4,13 +4,13 @@ import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 // Import your logo
-
+import logo from './assets/LogoAab.png';
 
 const Header = ({ profileImage }) => {
   return (
     <header className="header">
       <div className="header-left">
-        {/* Replace text with the logo image */}
+       <img src={logo} alt = "Student Task Planner Logo"/>
        
       </div>
       <div className="header-right">
