@@ -48,7 +48,7 @@ body {
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 40px 20px 20px; /* Reduced top padding to 40px */
+  padding: 40px 20px 20px; /* Maintain 40px top padding */
   margin-left: 0;
 }
 
@@ -65,18 +65,25 @@ body {
 .page-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align content to top */
-  min-height: calc(100vh - 40px); /* Adjusted for reduced padding */
-  padding: 40px 20px 20px; /* Reduced top padding to 40px */
-  margin-left: 0; /* Reset margin to align with sidebar end */
+  align-items: center; /* Restore centering for login/signup */
+  justify-content: center; /* Restore centering for login/signup */
+  min-height: calc(100vh - 40px); /* Adjusted for 40px padding */
+  padding: 40px 20px 20px; /* Maintain 40px top padding */
+  margin-left: 0; /* Reset for login/signup centering */
 }
 
-/* Adjust for sidebar presence */
-.app-container:has(.sidebar) .page-container {
+/* Special styling for dashboard to align with sidebar end */
+.page-container.dashboard {
+  align-items: flex-start; /* Align dashboard content to start */
+  justify-content: flex-start; /* Align dashboard content to top */
+  margin-left: 0; /* Reset for dashboard */
+}
+
+.app-container:has(.sidebar) .page-container.dashboard {
   margin-left: 250px; /* Start at sidebar end when expanded */
 }
 
-.app-container:has(.sidebar.collapsed) .page-container {
+.app-container:has(.sidebar.collapsed) .page-container.dashboard {
   margin-left: 60px; /* Start at sidebar end when collapsed */
 }
 
@@ -93,6 +100,7 @@ body {
   align-items: center;
 }
 
+/* Ensure footer text is centered for login/signup */
 .footer-text {
   font-size: 0.75rem;
   color: #4A4A4A;
@@ -120,7 +128,7 @@ body {
     padding: 40px 15px 15px;
   }
 
-  .app-container:has(.sidebar) .page-container {
+  .app-container:has(.sidebar) .page-container.dashboard {
     margin-left: 60px;
   }
 
@@ -151,7 +159,7 @@ body {
     padding: 40px 10px 10px;
   }
 
-  .app-container:has(.sidebar) .page-container {
+  .app-container:has(.sidebar) .page-container.dashboard {
     margin-left: 50px;
   }
 
