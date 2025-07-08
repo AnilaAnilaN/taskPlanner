@@ -21,6 +21,10 @@
   height: 100%;
 }
 
+.logo img {
+  margin-right: 10px; /* Default spacing between logo image and text */
+}
+
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
@@ -100,6 +104,10 @@
     margin-right: 10px;
   }
 
+  .logo img {
+    margin-right: 6px; /* Reduced spacing */
+  }
+
   .logo-text {
     font-size: 1.2rem;
   }
@@ -120,6 +128,7 @@
     padding: 6px 10px;
     height: 45px;
   }
+
 
   .logo-text {
     font-size: 1rem;
