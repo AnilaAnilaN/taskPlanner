@@ -11,6 +11,8 @@ const LoginPage = ({ onLogin }) => {
     password: '',
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,23 +21,37 @@ const LoginPage = ({ onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
+    setLoading(true);
     try {
       const response = await loginUser(formData);
       localStorage.setItem('token', response.data.token);
-      onLogin();
-      navigate('/dashboard');
+      setLoading(false);
+      setSuccess('Login successful! Redirecting to dashboard...');
+      setTimeout(() => {
+        onLogin();
+        navigate('/dashboard');
+      }, 2000); // Redirect after 2 seconds
     } catch (error) {
       console.error('Login error:', error);
+      setLoading(false);
       setError('Login failed. Please check your credentials and try again.');
     }
   };
 
   return (
-    <div className="login-page">
+    <div className="page-container">
       <AuthHeader />
-      <div className="login-container">
+      <div className="form-container">
         <h2>Login</h2>
         {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+        {loading && (
+          <div className="loading-dots">
+            <span>.</span><span>.</span><span>.</span>
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <label htmlFor="email" className="form-label">Email Address</label>
           <input
@@ -47,6 +63,7 @@ const LoginPage = ({ onLogin }) => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
           <label htmlFor="password" className="form-label">Password</label>
@@ -59,9 +76,12 @@ const LoginPage = ({ onLogin }) => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
-          <button type="submit" className="login-button">Login</button>
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
         </form>
       </div>
       <div className="footer-text">
