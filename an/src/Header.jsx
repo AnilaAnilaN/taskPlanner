@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import logo from '../assets/LogoAab.png';
+import logo from './assets/LogoAab.png';
 
 const Header = ({ profileImage }) => {
   return (
