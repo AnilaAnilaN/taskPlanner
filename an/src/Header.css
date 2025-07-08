@@ -1,63 +1,122 @@
+/* Header styling */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color: #08D7F2;
-  color: white;
+  padding: 10px 20px;
+  background-color: #4A90E2; /* Matches AuthHeader */
   width: 100%;
-  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Matches AuthHeader */
+  font-family: 'Segoe UI', sans-serif;
+  box-sizing: border-box;
 }
 
-.header-left h1 {
-  margin: 0;
-  margin-left: 250px;
-  font-size: 24px;
-  font-weight: 600;
+/* Logo container styling */
+.logo {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
+/* Logo image styling */
+.logo img {
+  height: 40px; /* Matches AuthHeader */
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
 
+/* Header right section */
 .header-right {
   display: flex;
   align-items: center;
 }
 
-.header-left img.logo {
-  max-height: 55px;
-  margin-left: 250px;
-  max-width: 300px;
-}
-
-/* Profile icon and text styling */
+/* Profile icon and text container */
 .profile-icon-container {
   display: flex;
-  flex-direction: column; /* Ensures the icon and text are vertically aligned */
-  align-items: center; /* Centers the items horizontally */
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Profile link styling */
+.profile-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Profile icon styling */
 .profile-icon {
-  width: 40px;
-  height: 40px;
-  display: block; /* Ensures the icon behaves like a block element */
-  margin-bottom: 5px; /* Adds space between the icon and text */
-  color: white;
-  align-self: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 5px;
+  color: #fff;
 }
 
 /* Profile text styling */
 .profile-text {
-  font-size: 16px;
-  text-align: center;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: white;
-  text-decoration: unset; /* Removes underline from the text */
+  color: #fff;
+  text-decoration: none;
 }
 
-.profile-text:hover {
-  text-decoration: none; /* Keeps underline removed on hover */
+/* Hover effect for profile link */
+.profile-link:hover .profile-text {
+  color: #50C878; /* Matches signup/register accent */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .header-left {
+    margin-bottom: 10px;
+  }
+
+  .logo img {
+    height: 30px;
+    max-width: 150px;
+  }
+
+  .profile-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .profile-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 8px;
+  }
+
+  .logo img {
+    height: 25px;
+    max-width: 120px;
+  }
+
+  .profile-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile-text {
+    font-size: 0.75rem;
+  }
 }
