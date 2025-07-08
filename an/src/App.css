@@ -65,26 +65,11 @@ body {
 .page-container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Restore centering for login/signup */
-  justify-content: center; /* Restore centering for login/signup */
+  align-items: center; /* Center login/signup */
+  justify-content: center; /* Center login/signup */
   min-height: calc(100vh - 40px); /* Adjusted for 40px padding */
   padding: 40px 20px 20px; /* Maintain 40px top padding */
   margin-left: 0; /* Reset for login/signup centering */
-}
-
-/* Special styling for dashboard to align with sidebar end */
-.page-container.dashboard {
-  align-items: flex-start; /* Align dashboard content to start */
-  justify-content: flex-start; /* Align dashboard content to top */
-  margin-left: 0; /* Reset for dashboard */
-}
-
-.app-container:has(.sidebar) .page-container.dashboard {
-  margin-left: 250px; /* Start at sidebar end when expanded */
-}
-
-.app-container:has(.sidebar.collapsed) .page-container.dashboard {
-  margin-left: 60px; /* Start at sidebar end when collapsed */
 }
 
 .form-container {
@@ -128,10 +113,6 @@ body {
     padding: 40px 15px 15px;
   }
 
-  .app-container:has(.sidebar) .page-container.dashboard {
-    margin-left: 60px;
-  }
-
   .form-container {
     padding: 1.5rem;
     max-width: 90%;
@@ -157,10 +138,6 @@ body {
 
   .main-content {
     padding: 40px 10px 10px;
-  }
-
-  .app-container:has(.sidebar) .page-container.dashboard {
-    margin-left: 50px;
   }
 
   .page-container {
