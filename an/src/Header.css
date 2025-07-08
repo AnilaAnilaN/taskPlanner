@@ -21,6 +21,10 @@
   font-weight: 600;
 }
 
+.logo{
+  max-width: 200px;
+  max-height: 200px;
+}
 .header-right {
   display: flex;
   align-items: center;
