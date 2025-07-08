@@ -147,7 +147,7 @@ body {
   .form-container {
     padding: 1rem;
   }
-
+}
 
 @media (max-width: 768px) {
   .app-container:has(.sidebar.open) .main-content {
