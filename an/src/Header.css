@@ -38,7 +38,7 @@
 
 .logo-text-mate {
   color: #F5F7FA; /* Updated color */
-  text-shadow: 1px 1px 3px rgba(44, 62, 80, 0.5);
+  text-shadow: 1px 1px 3px rgba(80, 200, 120, 0.4);
 }
 
 .logo-text::after {
