@@ -15,6 +15,8 @@ const RegisterPage = () => {
     yearOfStudy: '',
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,22 +25,35 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
+    setLoading(true);
     try {
       await registerUser(formData);
-      alert('Registration successful! Please log in using your credentials.');
-      navigate('/login');
+      setLoading(false);
+      setSuccess('Registration successful! Redirecting to login...');
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
     } catch (error) {
       console.error('Registration error:', error);
+      setLoading(false);
       setError('Registration failed. Please try again.');
     }
   };
 
   return (
-    <div className="register-page">
+    <div className="page-container"> {/* Updated to use global page-container */}
       <AuthHeader />
-      <div className="register-container">
+      <div className="form-container"> {/* Updated to use global form-container */}
         <h2>Register</h2>
         {error && <p className="error">{error}</p>}
+        {success && <p className="success">{success}</p>}
+        {loading && (
+          <div className="loading-dots">
+            <span>.</span><span>.</span><span>.</span>
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <label htmlFor="name" className="form-label">Name</label>
           <input
@@ -50,6 +65,7 @@ const RegisterPage = () => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
           <label htmlFor="email" className="form-label">Email Address</label>
@@ -62,6 +78,7 @@ const RegisterPage = () => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
           <label htmlFor="password" className="form-label">Password</label>
@@ -74,6 +91,7 @@ const RegisterPage = () => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
           <label htmlFor="college" className="form-label">College/University</label>
@@ -86,6 +104,7 @@ const RegisterPage = () => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
           <label htmlFor="fieldOfStudy" className="form-label">Field of Study</label>
@@ -98,6 +117,7 @@ const RegisterPage = () => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
           <label htmlFor="yearOfStudy" className="form-label">Year of Study</label>
@@ -110,9 +130,12 @@ const RegisterPage = () => {
             onChange={handleChange}
             required
             className="form-input"
+            disabled={loading}
           />
 
-          <button type="submit" className="register-button">Submit</button>
+          <button type="submit" className="register-button" disabled={loading}>
+            {loading ? 'Registering...' : 'Submit'}
+          </button>
         </form>
       </div>
       <div className="footer-text">
