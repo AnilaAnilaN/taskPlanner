@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDashboard, faBook, faTasks, faCalendarAlt, faBell, faComment, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false); /* Collapsed by default on mobile */
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
