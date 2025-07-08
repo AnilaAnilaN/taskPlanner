@@ -57,30 +57,38 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
-        <main className="main-content">
+        {!isAuthenticated ? (
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-            <Route path="/" element={<PrivateRoute element={Dashboard} />} />
-            <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
-            <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
-            <Route path="/courses" element={<PrivateRoute element={Courses} />} />
-            <Route path="/study-planner" element={<PrivateRoute element={StudyPlanner} />} />
-            <Route path="/feedback" element={<PrivateRoute element={Feedback} />} />
-            <Route
-              path="/reminder"
-              element={<PrivateRoute element={() => <Reminder tasks={tasks} />} />}
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute
-                  element={() => <Profile onLogout={handleLogout} onCloseAccount={handleCloseAccount} />}
-                />
-              }
-            />
+            <Route path="*" element={<Navigate to="/login" />} />
           </Routes>
-        </main>
+        ) : (
+          <>
+            <main className="main-content">
+              <Routes>
+                <Route path="/" element={<PrivateRoute element={Dashboard} />} />
+                <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
+                <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
+                <Route path="/courses" element={<PrivateRoute element={Courses} />} />
+                <Route path="/study-planner" element={<PrivateRoute element={StudyPlanner} />} />
+                <Route path="/feedback" element={<PrivateRoute element={Feedback} />} />
+                <Route
+                  path="/reminder"
+                  element={<PrivateRoute element={() => <Reminder tasks={tasks} />} />}
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <PrivateRoute
+                      element={() => <Profile onLogout={handleLogout} onCloseAccount={handleCloseAccount} />}
+                    />
+                  }
+                />
+              </Routes>
+            </main>
+          </>
+        )}
       </div>
     </Router>
   );
