@@ -13,14 +13,13 @@ import Profile from './Profile';
 import './App.css';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(null); // null for loading state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('isAuthenticated');
-    const initialAuth = !!loggedIn; // Convert to boolean
-    setIsAuthenticated(initialAuth); // Set immediately after check
-    if (initialAuth) {
+    if (loggedIn) {
+      setIsAuthenticated(true);
       fetchTasks();
     }
   }, []);
@@ -52,62 +51,36 @@ const App = () => {
   };
 
   const PrivateRoute = ({ element: Component, ...rest }) => {
-    return isAuthenticated === true ? (
-      <Component {...rest} />
-    ) : (
-      <Navigate to="/login" replace />
-    );
+    return isAuthenticated ? <Component {...rest} /> : <Navigate to="/login" />;
   };
-
-  // Loading state to prevent premature rendering
-  if (isAuthenticated === null) {
-    return <div>Loading...</div>; // Simple loading indicator
-  }
 
   return (
     <Router>
-      <div className={`app-container ${isAuthenticated ? 'authenticated' : ''}`}>
-        <Routes>
-          {!isAuthenticated && (
-            <>
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
-              <Route path="*" element={<Navigate to="/login" replace />} />
-            </>
-          )}
-          {isAuthenticated && (
+      <div className="app-container">
+        <main className="main-content">
+          <Routes>
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+            <Route path="/" element={<PrivateRoute element={Dashboard} />} />
+            <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
+            <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
+            <Route path="/courses" element={<PrivateRoute element={Courses} />} />
+            <Route path="/study-planner" element={<PrivateRoute element={StudyPlanner} />} />
+            <Route path="/feedback" element={<PrivateRoute element={Feedback} />} />
             <Route
-              path="/main"
+              path="/reminder"
+              element={<PrivateRoute element={() => <Reminder tasks={tasks} />} />}
+            />
+            <Route
+              path="/profile"
               element={
-                <main className="main-content">
-                  <Routes>
-                    <Route path="/" element={<PrivateRoute element={Dashboard} />} />
-                    <Route path="/dashboard" element={<PrivateRoute element={Dashboard} />} />
-                    <Route path="/tasks" element={<PrivateRoute element={Tasks} />} />
-                    <Route path="/courses" element={<PrivateRoute element={Courses} />} />
-                    <Route path="/study-planner" element={<PrivateRoute element={StudyPlanner} />} />
-                    <Route path="/feedback" element={<PrivateRoute element={Feedback} />} />
-                    <Route
-                      path="/reminder"
-                      element={<PrivateRoute element={() => <Reminder tasks={tasks} />} />}
-                    />
-                    <Route
-                      path="/profile"
-                      element={
-                        <PrivateRoute
-                          element={() => (
-                            <Profile onLogout={handleLogout} onCloseAccount={handleCloseAccount} />
-                          )}
-                        />
-                      }
-                    />
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                  </Routes>
-                </main>
+                <PrivateRoute
+                  element={() => <Profile onLogout={handleLogout} onCloseAccount={handleCloseAccount} />}
+                />
               }
             />
-          )}
-        </Routes>
+          </Routes>
+        </main>
       </div>
     </Router>
   );
