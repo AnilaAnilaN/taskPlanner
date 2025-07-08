@@ -11,7 +11,7 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: calc(100% - 250px); /* Limit width to center within available space */
+  max-width: calc(100% - 250px); /* Limit width to center within remaining space */
   margin: 0 auto; /* Center horizontally */
   padding: 0 20px;
 }
