@@ -48,7 +48,7 @@ body {
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 70px 20px 20px;
+  padding: 65px 20px 20px; /* Reduced top padding */
   margin-left: 0;
 }
 
@@ -67,8 +67,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
-  padding: 70px 20px 20px;
+  min-height: calc(100vh - 65px); /* Adjusted for header */
+  padding: 65px 20px 20px; /* Reduced top padding */
 }
 
 .form-container {
@@ -96,7 +96,7 @@ body {
 /* Responsive design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 60px;
+    width: 60px; /* Collapsed by default */
   }
 
   .app-container:has(.sidebar) .main-content {
@@ -108,7 +108,7 @@ body {
   }
 
   .main-content {
-    padding: 80px 15px 15px;
+    padding: 65px 15px 15px;
   }
 
   .form-container {
@@ -117,7 +117,7 @@ body {
   }
 
   .page-container {
-    padding: 80px 15px 15px;
+    padding: 65px 15px 15px;
   }
 }
 
@@ -135,11 +135,11 @@ body {
   }
 
   .main-content {
-    padding: 60px 10px 10px;
+    padding: 65px 10px 10px;
   }
 
   .page-container {
-    padding: 60px 10px 10px;
+    padding: 65px 10px 10px;
   }
 
   .form-container {
