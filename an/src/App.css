@@ -109,6 +109,10 @@ body {
     margin-left: 60px;
   }
 
+  .app-container:has(.sidebar.open) .main-content {
+    margin-left: 0 !important;
+  }
+
   .main-content {
     padding: 40px 15px 15px;
   }
@@ -146,11 +150,5 @@ body {
 
   .form-container {
     padding: 1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .app-container:has(.sidebar.open) .main-content {
-    margin-left: 0 !important;
   }
 }
