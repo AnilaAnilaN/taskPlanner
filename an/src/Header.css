@@ -24,9 +24,32 @@
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #fff;
   text-transform: uppercase;
   letter-spacing: 1px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-text-assign {
+  color: #50C878; /* Green from theme */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text-mate {
+  color: #007bff; /* Blue from theme */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, #50C878, #007bff);
+  border-radius: 2px;
 }
 
 .header-right {
