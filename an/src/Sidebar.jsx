@@ -48,7 +48,6 @@ const Sidebar = () => {
             <span>Reminder</span>
           </Link>
         </li>
-      
       </ul>
 
       <div className="sidebar-feedback">
