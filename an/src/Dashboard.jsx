@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getTasks, getStudySessions } from './api'; // Import API functions
+import { getTasks, getStudySessions } from './api';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import './Dashboard.css';
@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await getTasks(); // Use getTasks from api.js
+      const response = await getTasks();
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
@@ -27,7 +27,7 @@ const Dashboard = () => {
 
   const fetchStudySessions = async () => {
     try {
-      const response = await getStudySessions(); // Use getStudySessions from api.js
+      const response = await getStudySessions();
       setStudySessions(response.data);
     } catch (error) {
       console.error('Error fetching study sessions:', error);
@@ -89,7 +89,7 @@ const Dashboard = () => {
                 ))}
               </tbody>
             </table>
-            <Link to="/tasks" className="view-tasks-link">
+            <Link to="/tasks" className="view-all-link">
               View All Tasks
             </Link>
           </div>
@@ -115,6 +115,9 @@ const Dashboard = () => {
                 ))}
               </tbody>
             </table>
+            <Link to="/sessions" className="view-all-link">
+              View All Sessions
+            </Link>
           </div>
         </div>
       </div>
