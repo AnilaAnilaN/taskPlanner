@@ -121,6 +121,9 @@ const Dashboard = () => {
                     </tbody>
                   </table>
                 </div>
+                <Link to="/study-sessions" className="view-tasks-link">
+                  View All Sessions
+                </Link>
               </div>
             </div>
           </div>
