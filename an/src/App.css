@@ -54,10 +54,9 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* Ensure footer stays at bottom */
+  justify-content: center; /* Center vertically */
   min-height: 100vh;
-  padding-top: 80px; /* Space for fixed header */
-  padding-bottom: 60px; /* Increased to ensure footer doesn't overlap form */
+  padding: 80px 20px 20px; /* Space for header, reduced bottom padding */
 }
 
 .form-container {
@@ -89,8 +88,8 @@ header {
   color: #666;
   text-align: center;
   width: 100%;
-  padding: 10px 0;
-  position: relative; /* Changed from absolute to work with flex layout */
+  padding: 1rem 0;
+  margin-top: 1rem; /* Space between form and footer */
 }
 
 /* Responsive design */
@@ -109,8 +108,7 @@ header {
   }
 
   .page-container {
-    padding-top: 70px;
-    padding-bottom: 50px;
+    padding: 70px 15px 15px;
   }
 }
 
@@ -127,8 +125,7 @@ header {
   }
 
   .page-container {
-    padding-top: 60px;
-    padding-bottom: 40px;
+    padding: 60px 10px 10px;
   }
 
   .form-container {
