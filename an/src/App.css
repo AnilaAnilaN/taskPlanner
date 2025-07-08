@@ -19,36 +19,134 @@ body {
   min-height: 100vh;
 }
 
+.app-container:not(.authenticated) .main-content,
+.app-container:not(.authenticated) .sidebar {
+  display: none;
+}
+
+.app-container.authenticated .sidebar,
+.app-container.authenticated .main-content {
+  display: block;
+}
+
+/* Sidebar styles (integrated from sidebar.css) */
 .sidebar {
   width: 250px;
+  height: calc(100vh - 60px);
   background-color: #2C3E50;
-  color: white;
+  color: #fff;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  z-index: 2;
+  transition: width 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.sidebar ul {
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar.open {
+  width: 250px;
+}
+
+.sidebar-toggle {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
+}
+
+.sidebar-toggle:hover {
+  background-color: #50C878;
+  border-radius: 4px;
+}
+
+.sidebar-nav {
   list-style: none;
   padding: 0;
+  margin-top: 70px;
+  width: 100%;
 }
 
-.sidebar li {
-  padding: 15px 20px;
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #fff;
   cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, padding-left 0.3s;
 }
 
-.sidebar li a {
-  color: white;
+.sidebar-nav-item a {
+  display: flex;
+  align-items: center;
   text-decoration: none;
+  color: #fff;
+  width: 100%;
 }
 
-.sidebar li:hover {
+.sidebar-nav-item span {
+  margin-left: 10px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-nav-item span,
+.sidebar.collapsed .sidebar-feedback span {
+  display: none;
+}
+
+.sidebar-nav-item:hover {
   background-color: #50C878;
+  padding-left: 30px;
+}
+
+.sidebar-feedback {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, padding-left 0.3s;
+}
+
+.sidebar-feedback a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+}
+
+.sidebar-feedback span {
+  margin-left: 10px;
+}
+
+.sidebar-feedback:hover {
+  background-color: #50C878;
+  padding-left: 30px;
 }
 
 /* Main content with dynamic margin for sidebar */
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 40px 20px 20px; /* Maintain 40px top padding */
+  padding: 40px 20px 20px;
   margin-left: 0;
 }
 
@@ -62,17 +160,21 @@ body {
   margin-left: 60px;
 }
 
-.page-container {
+/* Login and Register Page Styles */
+.login-page,
+.register-page {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center login/signup */
-  justify-content: center; /* Center login/signup */
-  min-height: calc(100vh - 40px); /* Adjusted for 40px padding */
-  padding: 40px 20px 20px; /* Maintain 40px top padding */
-  margin-left: 0; /* Reset for login/signup centering */
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 40px);
+  padding: 40px 20px 20px;
+  width: 100%;
+  background-color: #f8f9fc;
 }
 
-.form-container {
+.login-page .form-container,
+.register-page .form-container {
   background-color: #ffffff;
   padding: 2rem;
   border-radius: 8px;
@@ -85,8 +187,8 @@ body {
   align-items: center;
 }
 
-/* Ensure footer text is centered for login/signup */
-.footer-text {
+.login-page .footer-text,
+.register-page .footer-text {
   font-size: 0.75rem;
   color: #4A4A4A;
   text-align: center;
@@ -101,6 +203,50 @@ body {
     width: 60px;
   }
 
+  .sidebar.open {
+    width: 200px;
+  }
+
+  .sidebar-nav-item span,
+  .sidebar-feedback span {
+    display: none;
+  }
+
+  .sidebar.open .sidebar-nav-item span,
+  .sidebar.open .sidebar-feedback span {
+    display: inline;
+  }
+
+  .sidebar-nav-item a,
+  .sidebar-feedback a {
+    justify-content: center;
+  }
+
+  .sidebar.open .sidebar-nav-item a,
+  .sidebar.open .sidebar-feedback a {
+    justify-content: flex-start;
+  }
+
+  .sidebar-nav-item,
+  .sidebar-feedback {
+    padding: 10px 15px;
+    font-size: 0.85rem;
+  }
+
+  .sidebar-toggle {
+    top: 70px;
+  }
+
+  .sidebar {
+    height: calc(100vh - 70px);
+  }
+
+  .sidebar.open {
+    height: 100vh;
+    top: 0;
+    z-index: 1001;
+  }
+
   .app-container:has(.sidebar) .main-content {
     margin-left: 60px;
   }
@@ -109,17 +255,23 @@ body {
     margin-left: 60px;
   }
 
+  .app-container:has(.sidebar.open) .main-content {
+    margin-left: 0 !important;
+  }
+
   .main-content {
     padding: 40px 15px 15px;
   }
 
-  .form-container {
-    padding: 1.5rem;
-    max-width: 90%;
+  .login-page,
+  .register-page {
+    padding: 40px 15px 15px;
   }
 
-  .page-container {
-    padding: 40px 15px 15px;
+  .login-page .form-container,
+  .register-page .form-container {
+    padding: 1.5rem;
+    max-width: 90%;
   }
 }
 
@@ -128,6 +280,24 @@ body {
     width: 50px;
   }
 
+  .sidebar.open {
+    width: 180px;
+  }
+
+  .sidebar-toggle {
+    font-size: 1rem;
+    padding: 6px;
+    top: 65px;
+  }
+
+  .sidebar {
+    height: calc(100vh - 65px);
+  }
+
+  .sidebar.open {
+    height: 100vh;
+  }
+
   .app-container:has(.sidebar) .main-content {
     margin-left: 50px;
   }
@@ -140,17 +310,19 @@ body {
     padding: 40px 10px 10px;
   }
 
-  .page-container {
+  .login-page,
+  .register-page {
     padding: 40px 10px 10px;
   }
 
-  .form-container {
+  .login-page .form-container,
+  .register-page .form-container {
     padding: 1rem;
   }
-}
 
-@media (max-width: 768px) {
-  .app-container:has(.sidebar.open) .main-content {
-    margin-left: 0 !important;
+  .sidebar-nav-item,
+  .sidebar-feedback {
+    padding: 8px 12px;
+    font-size: 0.8rem;
   }
 }
