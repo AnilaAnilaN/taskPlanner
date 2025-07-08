@@ -114,7 +114,7 @@ const Dashboard = () => {
                         <tr key={session._id}>
                           <td>{formatDate(session.date)}</td>
                           <td>{formatTime(`${session.startTime} - ${session.endTime}`)}</td>
-                          <td>{calculateDuration(session.startTime, session.endTime)}</td>
+                          <td>{calculateDuration(session.startTime, endTime)}</td>
                           <td>{session.course}</td>
                         </tr>
                       ))}
