@@ -1,20 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './AuthHeader.css';
-import logo from '../assets/LogoAab.png';
-
-//Every react function is called a component that returns a markup
 
 const AuthHeader = () => {
   return (
     <header className="auth-header">
       <div className="logo">
-        {/* Image container for logo */}
-        <img src={logo} alt="Student Task Planner Logo" />
+        <span className="logo-text">assignMate</span>
       </div>
       <div className="auth-buttons">
-        <Link to="/login"> 
-        
+        <Link to="/login">
           <button className="auth-btn login-btn">Login</button>
         </Link>
         <Link to="/register">
