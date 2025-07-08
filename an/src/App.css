@@ -48,7 +48,7 @@ body {
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 60px 20px 20px; /* Reduced top padding */
+  padding: 40px 20px 20px; /* Reduced top padding to 40px */
   margin-left: 0;
 }
 
@@ -65,10 +65,19 @@ body {
 .page-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start; /* Changed to flex-start for dashboard */
-  min-height: calc(100vh - 60px); /* Adjusted for header */
-  padding: 60px 20px 20px; /* Reduced top padding */
+  justify-content: flex-start; /* Align content to top */
+  min-height: calc(100vh - 40px); /* Adjusted for reduced padding */
+  padding: 40px 20px 20px; /* Reduced top padding to 40px */
+  margin-left: 0; /* Reset margin to align with sidebar end */
+}
+
+/* Adjust for sidebar presence */
+.app-container:has(.sidebar) .page-container {
+  margin-left: 250px; /* Start at sidebar end when expanded */
+}
+
+.app-container:has(.sidebar.collapsed) .page-container {
+  margin-left: 60px; /* Start at sidebar end when collapsed */
 }
 
 .form-container {
@@ -96,7 +105,7 @@ body {
 /* Responsive design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 60px; /* Collapsed by default */
+    width: 60px;
   }
 
   .app-container:has(.sidebar) .main-content {
@@ -108,7 +117,11 @@ body {
   }
 
   .main-content {
-    padding: 60px 15px 15px;
+    padding: 40px 15px 15px;
+  }
+
+  .app-container:has(.sidebar) .page-container {
+    margin-left: 60px;
   }
 
   .form-container {
@@ -117,7 +130,7 @@ body {
   }
 
   .page-container {
-    padding: 60px 15px 15px;
+    padding: 40px 15px 15px;
   }
 }
 
@@ -135,11 +148,15 @@ body {
   }
 
   .main-content {
-    padding: 60px 10px 10px;
+    padding: 40px 10px 10px;
+  }
+
+  .app-container:has(.sidebar) .page-container {
+    margin-left: 50px;
   }
 
   .page-container {
-    padding: 60px 10px 10px;
+    padding: 40px 10px 10px;
   }
 
   .form-container {
