@@ -24,7 +24,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await registerUser(userData);
+      await registerUser(formData);
       alert('Registration successful! Please log in using your credentials.');
       navigate('/login');
     } catch (error) {
