@@ -11,7 +11,7 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 800px; /* Matches form-container max-width */
+  padding: 0 20px; /* Adjusted for centering */
 }
 
 /* Dashboard Section */
@@ -30,12 +30,12 @@
   color: #333;
   font-size: 1.5rem;
   font-weight: bold;
-  border-bottom: 2px solid #4A90E2; /* Matches header */
+  border-bottom: 2px solid #4A90E2;
   padding-bottom: 10px;
 }
 
 /* Table Wrapper for Responsive Scroll */
-.dashboard-section .table-wrapper {
+.table-wrapper {
   overflow-x: auto;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .dashboard-section th {
-  background-color: #4A90E2; /* Matches header */
+  background-color: #4A90E2;
   color: #fff;
   font-weight: bold;
 }
@@ -76,7 +76,7 @@
 .view-tasks-link {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #50C878; /* Matches signup/register */
+  background-color: #50C878;
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -87,19 +87,19 @@
 }
 
 .view-tasks-link:hover {
-  background-color: #45A563; /* Darker green */
+  background-color: #45A563;
   transform: translateY(-2px);
 }
 
 /* Error Message */
 .error {
-  color: #E57373; /* Matches LoginPage/RegisterPage */
+  color: #E57373;
   text-align: center;
   margin-bottom: 20px;
   font-size: 0.9rem;
 }
 
-/* Button Styling (for potential edit buttons) */
+/* Button Styling */
 .edit-task-button,
 .button {
   display: inline-block;
@@ -124,7 +124,6 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .dashboard-content {
-    max-width: 100%;
     padding: 0 10px;
   }
 
