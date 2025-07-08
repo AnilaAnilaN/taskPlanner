@@ -51,7 +51,8 @@
 
 /* Table Wrapper for Responsive Scroll */
 .table-wrapper {
-  overflow-x: auto;
+  overflow-x: auto; /* Ensure horizontal scroll on small devices */
+  min-width: 0; /* Prevent content collapse */
 }
 
 /* Table Styling */
@@ -59,6 +60,7 @@
   width: 100%; /* Ensure tables expand to container width */
   border-collapse: collapse;
   margin-bottom: 20px;
+  table-layout: auto; /* Allow natural column sizing */
 }
 
 .dashboard-section th,
@@ -67,6 +69,7 @@
   text-align: left;
   border-bottom: 1px solid #ddd;
   font-size: 0.9rem;
+  white-space: nowrap; /* Prevent text wrapping on small devices */
 }
 
 .dashboard-section th {
@@ -144,6 +147,10 @@
 
   .dashboard-content {
     padding: 0 10px; /* Reduce padding on smaller screens */
+  }
+
+  .table-wrapper {
+    overflow-x: auto; /* Ensure scrollable on small devices */
   }
 
   .dashboard-section {
