@@ -48,9 +48,8 @@ body {
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 20px; /* Adjusted to remove fixed top padding */
+  padding: 40px 20px 20px; /* Maintain 40px top padding */
   margin-left: 0;
-  margin-top: 60px; /* Match header height */
 }
 
 /* Apply margin when sidebar is present */
@@ -68,10 +67,9 @@ body {
   flex-direction: column;
   align-items: center; /* Center login/signup */
   justify-content: center; /* Center login/signup */
-  min-height: calc(100vh - 60px); /* Adjusted for header height */
-  padding: 20px;
+  min-height: calc(100vh - 40px); /* Adjusted for 40px padding */
+  padding: 40px 20px 20px; /* Maintain 40px top padding */
   margin-left: 0; /* Reset for login/signup centering */
-  margin-top: 60px; /* Match header height */
 }
 
 .form-container {
@@ -100,7 +98,7 @@ body {
 /* Responsive design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 40px;
+    width: 60px;
   }
 
   .app-container:has(.sidebar) .main-content {
@@ -116,8 +114,7 @@ body {
   }
 
   .main-content {
-    margin-top: 50px; /* Match header height */
-    padding: 15px;
+    padding: 40px 15px 15px;
   }
 
   .form-container {
@@ -126,9 +123,7 @@ body {
   }
 
   .page-container {
-    margin-top: 50px; /* Match header height */
-    padding: 15px;
-    min-height: calc(100vh - 50px);
+    padding: 40px 15px 15px;
   }
 }
 
@@ -146,14 +141,11 @@ body {
   }
 
   .main-content {
-    margin-top: 45px; /* Match header height */
-    padding: 10px;
+    padding: 40px 10px 10px;
   }
 
   .page-container {
-    margin-top: 45px; /* Match header height */
-    padding: 10px;
-    min-height: calc(100vh - 45px);
+    padding: 40px 10px 10px;
   }
 
   .form-container {
