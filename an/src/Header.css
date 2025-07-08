@@ -21,10 +21,13 @@
   font-weight: 600;
 }
 
-.logo{
-  max-width: 200px;
-  max-height: 200px;
+.logo {
+  height: 135%; /* Zoomed in to increase visibility of image contents */
+  width: auto; /* Maintains aspect ratio */
+  max-width: 700px; /* Prevents the logo from becoming too wide */
+  object-fit: contain; /* Ensures the image fits properly without distortion */
 }
+
 .header-right {
   display: flex;
   align-items: center;
