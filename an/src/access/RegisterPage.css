@@ -1,5 +1,5 @@
 /* Register-specific form styles */
-.register-container h2 {
+.form-container h2 {
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: bold;
@@ -7,7 +7,7 @@
   text-align: center;
 }
 
-.register-container form {
+.form-container form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -21,8 +21,8 @@
 }
 
 .form-input {
-  padding: 0.5rem;
-  font-size: 0.9rem;
+  padding: 0.75rem; /* Increased from 0.5rem for consistency */
+  font-size: 1rem; /* Increased from 0.9rem for consistency */
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 1rem;
@@ -32,9 +32,9 @@
 }
 
 .form-input:focus {
-  border-color: #007bff;
+  border-color: #007bff; /* Blue, no pink */
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3); /* Blue shadow */
 }
 
 .register-button {
@@ -43,7 +43,7 @@
   padding: 0.75rem;
   border: none;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: 1rem; /* Increased from 0.9rem for consistency */
   cursor: pointer;
   transition: background-color 0.3s;
   width: 100%;
