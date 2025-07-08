@@ -1,75 +1,111 @@
+/* Header styling */
 .auth-header {
   display: flex;
-  justify-content: center; /* Centers the logo horizontally */
-  align-items: center; /* Centers the logo vertically */
+  justify-content: space-between; /* Logo left, buttons right */
+  align-items: center;
   padding: 10px 20px;
-  background-color: #08D7F2;
+  background-color: #4A90E2; /* Calming blue for student app */
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 70px; /* Increased header height to allow for a larger logo */
-  overflow: hidden; /* Ensures content stays within header bounds */
+  height: 60px; /* Reduced height for better mobile fit */
+  font-family: 'Segoe UI', sans-serif;
 }
 
 /* Logo container styling */
 .logo {
   display: flex;
-  justify-content: center; /* Centers the logo horizontally */
-  align-items: center; /* Centers the logo vertically */
-  height: 100%; /* Takes the full height of the header */
-  flex-grow: 0;
-  flex-basis: auto;
+  align-items: center;
+  height: 100%;
 }
 
-/* Image styling for larger size (zoomed in) */
+/* Logo image styling */
 .logo img {
-  height: 135%; /* Zoomed in to increase visibility of image contents */
-  width: auto; /* Maintains aspect ratio */
-  max-width: 700px; /* Prevents the logo from becoming too wide */
-  object-fit: contain; /* Ensures the image fits properly without distortion */
+  height: 40px; /* Smaller for mobile, maintains clarity */
+  width: auto;
+  max-width: 200px; /* Prevents overflow */
+  object-fit: contain;
 }
 
-/* Adjusted Button Positioning */
+/* Button container styling */
 .auth-buttons {
   display: flex;
-  gap: 15px;
-  position: absolute; /* Moves buttons to their own position */
-  right: 30px; /* Positions the buttons on the right */
-  top: 50%; /* Vertically center buttons */
-  transform: translateY(-50%); /* Adjusts position for perfect vertical centering */
-  margin-right: 20px;
+  gap: 10px; /* Reduced gap for tighter layout */
 }
 
-/* Button Styling */
+/* Button styling */
 .auth-btn {
-  padding: 10px 20px;
-  font-size: 14px;
+  padding: 8px 16px;
+  font-size: 0.9rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 100px;
   text-align: center;
-  transition: opacity 0.3s;
+  transition: background-color 0.3s;
   font-weight: bold;
+  min-width: 80px; /* Smaller buttons for mobile */
 }
 
 .login-btn {
-  background-color: #000;
+  background-color: #007bff; /* Matches form buttons */
   color: #fff;
-  border: 1px solid #000;
 }
 
 .signup-btn {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #fff;
+  background-color: #50C878; /* Vibrant green for signup */
+  color: #fff;
 }
 
 /* Hover effect for buttons */
 .auth-btn:hover {
   opacity: 0.9;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .auth-header {
+    flex-direction: column; /* Stack logo and buttons */
+    height: auto;
+    padding: 10px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .logo img {
+    height: 30px; /* Smaller logo on mobile */
+    max-width: 150px;
+  }
+
+  .auth-buttons {
+    flex-direction: row;
+    gap: 8px;
+  }
+
+  .auth-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-header {
+    padding: 8px;
+  }
+
+  .logo img {
+    height: 25px;
+    max-width: 120px;
+  }
+
+  .auth-btn {
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    min-width: 60px;
+  }
 }
