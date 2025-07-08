@@ -9,7 +9,10 @@ const Header = ({ profileImage }) => {
     <header className="header">
       <div className="header-left">
         <div className="logo">
-          <span className="logo-text">assignMate</span>
+          <span className="logo-text">
+            <span className="logo-text-assign">assign</span>
+            <span className="logo-text-mate">Mate</span>
+          </span>
         </div>
       </div>
       <div className="header-right">
