@@ -24,7 +24,7 @@
   padding: 0.75rem;
   font-size: 1rem;
   border: 1px solid #ccc;
-  border-radius: 4px; /* Ensure consistent rounded corners */
+  border-radius: 4px;
   margin-bottom: 1rem;
   background-color: #f9f9f9;
   width: 100%;
@@ -33,18 +33,18 @@
 }
 
 .form-input:hover {
-  border-color: #007bff; /* Blue hover effect */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  border-color: #4A90E2; /* Matches header background */
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
 }
 
 .form-input:focus {
-  border-color: #007bff;
+  border-color: #4A90E2;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
 }
 
 .login-button {
-  background-color: #007bff;
+  background-color: #007bff; /* Matches header login button */
   color: white;
   padding: 0.75rem;
   border: none;
@@ -66,14 +66,14 @@
 }
 
 .error {
-  color: red;
+  color: #E57373; /* Softer red for student-friendly look */
   text-align: center;
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
 
 .success {
-  color: green;
+  color: #50C878; /* Matches header signup button */
   text-align: center;
   margin-bottom: 1rem;
   font-size: 0.9rem;
