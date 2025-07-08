@@ -148,3 +148,10 @@ body {
     padding: 1rem;
   }
 }
+
+
+@media (max-width: 768px) {
+  .app-container:has(.sidebar.open) .main-content {
+    margin-left: 0 !important;
+  }
+}
