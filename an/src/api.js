@@ -27,8 +27,9 @@ export const createCourse = (course) => api.post('/api/courses', course);
 export const updateCourse = (id, course) => api.put(`/api/courses/${id}`, course);
 export const deleteCourse = (id) => api.delete(`/api/courses/${id}`);
 
-export const register = (user) => api.post('/api/register', user);
-export const login = (credentials) => api.post('/api/login', credentials);
+/ Authentication-related APIs
+export const registerUser = (userData) => api.post('/api/register', userData);
+export const loginUser = (credentials) => api.post('/api/login', credentials);
 
 export const getStudySessions = () => api.get('/api/study-sessions');
 export const createStudySession = (session) => api.post('/api/study-sessions', session);
