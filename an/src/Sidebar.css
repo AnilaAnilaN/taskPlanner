@@ -1,108 +1,175 @@
 /* Sidebar Container */
 .sidebar {
   width: 250px;
+  height: calc(100vh - 60px);
   background-color: #2C3E50;
-  color: white;
-  min-height: 100vh; /* Ensure full vertical height */
+  color: #fff;
+  position: fixed;
+  top: 60px;
+  left: 0;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding-top: 20px;
+  z-index: 2;
   transition: width 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* Sidebar Collapsed */
 .sidebar.collapsed {
   width: 60px;
 }
 
-/* Sidebar Header */
-.sidebar-header {
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Sidebar Open */
+.sidebar.open {
+  width: 250px;
 }
 
-/* Sidebar Toggle Icon */
+/* Sidebar Toggle Button */
 .sidebar-toggle {
+  background-color: transparent;
+  border: none;
+  color: #fff;
   cursor: pointer;
-  font-size: 1.5rem;
-  color: white;
-  display: flex; /* Ensure visibility */
+  padding: 8px;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3;
 }
 
 .sidebar-toggle:hover {
-  color: #50C878;
+  background-color: #50C878;
+  border-radius: 4px;
 }
 
-/* Sidebar Menu */
-.sidebar ul {
+/* Sidebar Navigation */
+.sidebar-nav {
   list-style: none;
   padding: 0;
-  flex-grow: 1; /* Allow content to grow within height */
-  overflow-y: auto; /* Enable vertical scroll if content overflows */
+  margin-top: 70px;
+  width: 100%;
 }
 
-.sidebar li {
-  padding: 15px 20px;
-  cursor: pointer;
-}
-
-.sidebar li a {
-  color: white;
-  text-decoration: none;
+.sidebar-nav-item {
   display: flex;
   align-items: center;
+  padding: 12px 20px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, padding-left 0.3s;
 }
 
-.sidebar li a i {
-  margin-right: 10px;
+.sidebar-nav-item a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
 }
 
-.sidebar li:hover {
-  background-color: #50C878;
+.sidebar-nav-item span {
+  margin-left: 10px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* Hide text when collapsed */
-.sidebar.collapsed li a span {
+.sidebar.collapsed .sidebar-nav-item span,
+.sidebar.collapsed .sidebar-feedback span {
   display: none;
 }
 
-.sidebar.collapsed li a i {
-  margin-right: 0;
+.sidebar-nav-item:hover {
+  background-color: #50C878;
+  padding-left: 30px;
+}
+
+/* Feedback Section */
+.sidebar-feedback {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, padding-left 0.3s;
+}
+
+.sidebar-feedback a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
+  width: 100%;
+}
+
+.sidebar-feedback span {
+  margin-left: 10px;
+}
+
+.sidebar-feedback:hover {
+  background-color: #50C878;
+  padding-left: 30px;
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .sidebar {
-    width: 60px; /* Default to collapsed state */
+    width: 60px;
   }
 
-  .sidebar-header {
+  .sidebar.open {
+    width: 200px;
+  }
+
+  .sidebar-nav-item span,
+  .sidebar-feedback span {
+    display: none;
+  }
+
+  .sidebar.open .sidebar-nav-item span,
+  .sidebar.open .sidebar-feedback span {
+    display: inline;
+  }
+
+  .sidebar-nav-item a,
+  .sidebar-feedback a {
+    justify-content: center;
+  }
+
+  .sidebar.open .sidebar-nav-item a,
+  .sidebar.open .sidebar-feedback a {
+    justify-content: flex-start;
+  }
+
+  .sidebar-nav-item,
+  .sidebar-feedback {
     padding: 10px 15px;
-  }
-
-  .sidebar-toggle {
-    font-size: 1.2rem; /* Slightly smaller on small screens */
-  }
-
-  .sidebar li {
-    padding: 10px 15px;
+    font-size: 0.85rem;
   }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .sidebar {
-    width: 50px; /* Even narrower on very small screens */
+    width: 50px;
   }
 
-  .sidebar-header {
-    padding: 8px 10px;
+  .sidebar.open {
+    width: 180px;
   }
 
   .sidebar-toggle {
-    font-size: 1rem; /* Adjust size for very small screens */
+    font-size: 1rem;
+    padding: 6px;
   }
 
-  .sidebar li {
-    padding: 8px 10px;
+  .sidebar-nav-item,
+  .sidebar-feedback {
+    padding: 8px 12px;
+    font-size: 0.8rem;
   }
 }
