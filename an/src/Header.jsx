@@ -10,9 +10,10 @@ const Header = ({ profileImage }) => {
   return (
     <header className="header">
       <div className="header-left">
+        <div className="logo">
        <img src={logo} alt = "Student Task Planner Logo"/>
-       
-      </div>
+        <div/>
+       </div>
       <div className="header-right">
         <div className="profile-icon-container">
           <Link to="/profile" className="profile-link">
