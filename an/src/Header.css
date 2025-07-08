@@ -1,50 +1,45 @@
-/* Header styling */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #4A90E2; /* Matches AuthHeader */
+  background-color: #4A90E2;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  height: 60px; /* Matches AuthHeader */
+  height: 60px;
   font-family: 'Segoe UI', sans-serif;
   box-sizing: border-box;
 }
 
-/* Logo container styling */
 .logo {
   display: flex;
   align-items: center;
   height: 100%;
 }
 
-/* Logo image styling */
-.logo img {
-  height: 40px; /* Matches AuthHeader */
-  width: auto;
-  max-width: 200px;
-  object-fit: contain;
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Header right section */
 .header-right {
   display: flex;
   align-items: center;
 }
 
-/* Profile icon and text container */
 .profile-icon-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Profile link styling */
 .profile-link {
   display: flex;
   flex-direction: column;
@@ -53,7 +48,6 @@
   color: #fff;
 }
 
-/* Profile icon styling */
 .profile-icon {
   width: 32px;
   height: 32px;
@@ -61,7 +55,6 @@
   color: #fff;
 }
 
-/* Profile text styling */
 .profile-text {
   font-size: 0.85rem;
   font-weight: 500;
@@ -69,31 +62,29 @@
   text-decoration: none;
 }
 
-/* Hover effect for profile link */
 .profile-link:hover .profile-text {
-  color: #50C878; /* Matches signup/register accent */
+  color: #50C878;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .header {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
+    flex-direction: row;
+    padding: 8px 15px;
+    height: 50px;
   }
 
   .header-left {
-    margin-bottom: 10px;
+    margin-right: 10px;
   }
 
-  .logo img {
-    height: 30px;
-    max-width: 150px;
+  .logo-text {
+    font-size: 1.2rem;
   }
 
   .profile-icon {
     width: 28px;
     height: 28px;
+    margin-bottom: 3px;
   }
 
   .profile-text {
@@ -103,17 +94,18 @@
 
 @media (max-width: 480px) {
   .header {
-    padding: 8px;
+    padding: 6px 10px;
+    height: 45px;
   }
 
-  .logo img {
-    height: 25px;
-    max-width: 120px;
+  .logo-text {
+    font-size: 1rem;
   }
 
   .profile-icon {
     width: 24px;
     height: 24px;
+    margin-bottom: 2px;
   }
 
   .profile-text {
