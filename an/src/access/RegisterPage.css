@@ -33,18 +33,18 @@
 }
 
 .form-input:hover {
-  border-color: #007bff; /* Blue hover effect */
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+  border-color: #4A90E2; /* Matches header background */
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
 }
 
 .form-input:focus {
-  border-color: #007bff;
+  border-color: #4A90E2;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
 }
 
 .register-button {
-  background-color: #007bff;
+  background-color: #50C878; /* Matches header signup button */
   color: white;
   padding: 0.75rem;
   border: none;
@@ -57,7 +57,7 @@
 }
 
 .register-button:hover {
-  background-color: #0056b3;
+  background-color: #45A563; /* Darker green for hover */
 }
 
 .register-button:disabled {
@@ -66,14 +66,14 @@
 }
 
 .error {
-  color: red;
+  color: #E57373; /* Softer red */
   text-align: center;
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
 
 .success {
-  color: green;
+  color: #50C878; /* Matches header signup button */
   text-align: center;
   margin-bottom: 1rem;
   font-size: 0.9rem;
