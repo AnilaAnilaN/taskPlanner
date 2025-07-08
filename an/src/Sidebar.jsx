@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDashboard, faBook, faTasks, faCalendarAlt, faBell, faComment, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false); /* Collapsed by default on mobile */
+  const [isOpen, setIsOpen] = useState(window.innerWidth >= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsOpen(window.innerWidth >= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
