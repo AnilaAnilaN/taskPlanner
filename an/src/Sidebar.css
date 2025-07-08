@@ -119,6 +119,8 @@
 @media screen and (max-width: 768px) {
   .sidebar {
     width: 60px;
+    top: 50px; /* Match header height */
+    height: calc(100vh - 50px);
   }
 
   .sidebar.open {
@@ -155,6 +157,8 @@
 @media screen and (max-width: 480px) {
   .sidebar {
     width: 50px;
+    top: 45px; /* Match header height */
+    height: calc(100vh - 45px);
   }
 
   .sidebar.open {
@@ -170,4 +174,5 @@
   .sidebar-feedback {
     padding: 8px 12px;
     font-size: 0.8rem;
-  }}
+  }
+}
