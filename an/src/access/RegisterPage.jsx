@@ -43,9 +43,9 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="page-container"> {/* Updated to use global page-container */}
+    <div className="page-container">
       <AuthHeader />
-      <div className="form-container"> {/* Updated to use global form-container */}
+      <div className="form-container">
         <h2>Register</h2>
         {error && <p className="error">{error}</p>}
         {success && <p className="success">{success}</p>}
