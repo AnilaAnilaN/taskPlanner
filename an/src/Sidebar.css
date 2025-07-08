@@ -2,7 +2,7 @@
 .sidebar {
   width: 250px;
   height: 100vh;
-  background-color: #2C3E50; /* Dark blue, matches app */
+  background-color: #2C3E50;
   color: #fff;
   position: fixed;
   top: 0;
@@ -41,7 +41,7 @@
 }
 
 .sidebar-toggle:hover {
-  background-color: #50C878; /* Matches signup/register */
+  background-color: #50C878;
   border-radius: 4px;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .sidebar-nav-item:hover {
-  background-color: #50C878; /* Matches signup/register */
+  background-color: #50C878;
   padding-left: 30px;
 }
 
@@ -115,7 +115,7 @@
 /* Responsive Adjustments */
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 60px; /* Collapsed by default on mobile */
+    width: 60px;
   }
 
   .sidebar.open {
