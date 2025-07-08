@@ -23,15 +23,11 @@ body {
   width: 250px;
   background-color: #2C3E50;
   color: white;
-  min-height: 100vh; /* Ensure full vertical height */
-  display: flex;
-  flex-direction: column;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
-  flex-grow: 1; /* Allow content to grow within height */
 }
 
 .sidebar li {
@@ -52,7 +48,7 @@ body {
 .main-content {
   flex-grow: 1;
   background-color: #f8f9fc;
-  padding: 40px 20px 20px; /* Maintain 40px top padding for header gap */
+  padding: 40px 20px 20px; /* Maintain 40px top padding */
   margin-left: 0;
 }
 
@@ -74,12 +70,6 @@ body {
   min-height: calc(100vh - 40px); /* Adjusted for 40px padding */
   padding: 40px 20px 20px; /* Maintain 40px top padding */
   margin-left: 0; /* Reset for login/signup centering */
-}
-
-/* Remove vertical centering for dashboard */
-.page-container.dashboard {
-  align-items: flex-start; /* Align to top */
-  justify-content: flex-start; /* Align to top */
 }
 
 .form-container {
@@ -117,6 +107,10 @@ body {
 
   .app-container:has(.sidebar.collapsed) .main-content {
     margin-left: 60px;
+  }
+
+  .app-container:has(.sidebar.open) .main-content {
+    margin-left: 0 !important;
   }
 
   .main-content {
