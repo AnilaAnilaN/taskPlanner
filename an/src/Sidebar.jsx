@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDashboard, faBook, faTasks, faCalendarAlt, faBell, faCog, faCommentSms, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faDashboard, faBook, faTasks, faCalendarAlt, faBell, faComment, faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -52,7 +52,7 @@ const Sidebar = () => {
 
       <div className="sidebar-feedback">
         <Link to="/feedback">
-          <FontAwesomeIcon icon={faCommentSms} />
+          <FontAwesomeIcon icon={faComment} />
           <span>Feedback</span>
         </Link>
       </div>
