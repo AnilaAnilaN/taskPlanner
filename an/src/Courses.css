@@ -65,12 +65,11 @@
 .course-form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
-  min-height: calc(100vh - 65px); /* Account for header and margin */
+  margin-top: 65px; /* Match courses-content and Dashboard.css */
   padding: 20px;
   background-color: #f8f9fc; /* Match app background */
-  margin-top: 0; /* Override AddEditCourseForm.css */
+  margin-left: 250px; /* Match sidebar width */
 }
 
 .error {
@@ -109,8 +108,9 @@
   }
 
   .course-form-container {
+    margin-left: 60px; /* Match sidebar width */
+    margin-top: 50px; /* Match courses-content */
     padding: 15px;
-    min-height: calc(100vh - 50px); /* Adjust for mobile header */
   }
 }
 
@@ -138,7 +138,8 @@
   }
 
   .course-form-container {
+    margin-left: 50px; /* Match sidebar width */
+    margin-top: 45px; /* Match courses-content */
     padding: 10px;
-    min-height: calc(100vh - 45px); /* Adjust for mobile header */
   }
 }
