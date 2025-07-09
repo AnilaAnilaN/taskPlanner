@@ -1,14 +1,10 @@
-.courses-container {
+.courses-content {
   display: flex;
-  min-height: 100vh;
-  background-color: #f8f9fc;
-}
-
-.courses-main-content {
-  flex-grow: 1;
-  padding: 20px;
+  flex-direction: column;
+  gap: 20px;
   margin-left: 250px; /* Match sidebar width */
-  margin-top: 60px; /* Match header height */
+  margin-top: 65px; /* Reduced to minimize header gap, match Dashboard.css */
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .courses-section {
@@ -21,7 +17,7 @@
 .courses-section h2 {
   margin-top: 0;
   margin-bottom: 20px;
-  color: #50C878;
+  color: #50C878; /* Match Dashboard.css */
   font-size: 24px;
   font-weight: 600;
   padding-bottom: 10px;
@@ -35,7 +31,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #50C878;
+  background-color: #50C878; /* Match Dashboard.css */
   border-radius: 4px;
 }
 
@@ -85,6 +81,17 @@
 .course-actions .button {
   flex: 1;
   text-align: center;
+  padding: 8px;
+  background-color: #50C878;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.course-actions .button:hover {
+  background-color: #45A563;
 }
 
 .add-course-button {
@@ -115,10 +122,10 @@
 .course-form-container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
+  min-height: calc(100vh - 65px); /* Account for header and margin */
   padding: 20px;
-  min-height: calc(100vh - 60px);
 }
 
 .course-form {
@@ -184,9 +191,9 @@
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .courses-main-content {
-    margin-left: 60px;
-    margin-top: 50px;
+  .courses-content {
+    margin-left: 60px; /* Match sidebar width */
+    margin-top: 50px; /* Reduced for mobile */
     padding: 15px;
   }
 
@@ -228,10 +235,12 @@
 
   .course-form-container {
     padding: 15px;
+    min-height: calc(100vh - 50px); /* Adjust for mobile header */
   }
 
   .course-form {
     padding: 15px;
+    max-width: 90%; /* Slightly narrower for mobile */
   }
 
   .course-form h2 {
@@ -251,9 +260,9 @@
 }
 
 @media (max-width: 480px) {
-  .courses-main-content {
-    margin-left: 50px;
-    margin-top: 45px;
+  .courses-content {
+    margin-left: 50px; /* Match sidebar width */
+    margin-top: 45px; /* Reduced for mobile */
     padding: 10px;
   }
 
@@ -295,10 +304,12 @@
 
   .course-form-container {
     padding: 10px;
+    min-height: calc(100vh - 45px); /* Adjust for mobile header */
   }
 
   .course-form {
     padding: 10px;
+    max-width: 95%; /* Full width for smaller screens */
   }
 
   .course-form h2 {
