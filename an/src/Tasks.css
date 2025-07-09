@@ -5,10 +5,10 @@
 }
 
 .main-content {
-  margin-left: 250px; /* Match Dashboard.css sidebar */
   margin-top: 20px; /* Specified margin-top */
+  margin-left: 0; /* No sidebar */
   padding: 20px;
-  width: calc(100% - 250px); /* Match Dashboard.css */
+  width: 100%; /* Full width */
   font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
   background-color: #f8f9fc; /* Match Dashboard.css */
 }
@@ -24,6 +24,7 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 10;
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
 }
 
 .error {
@@ -41,10 +42,8 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .main-content {
-    margin-left: 60px;
     margin-top: 15px; /* Responsive margin-top */
     padding: 15px;
-    width: calc(100% - 60px);
   }
 
   .add-task-form {
@@ -85,10 +84,8 @@
 
 @media (max-width: 480px) {
   .main-content {
-    margin-left: 50px;
     margin-top: 10px; /* Responsive margin-top */
     padding: 10px;
-    width: calc(100% - 50px);
   }
 
   .add-task-form {
