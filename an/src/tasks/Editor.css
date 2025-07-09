@@ -1,87 +1,92 @@
 .editor {
-    margin-top: 10px;
-    min-height: 150px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #fff;
-  }
-  .ql-container {
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-    background-color: #fff;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    font-family: Arial, sans-serif;
+  margin-top: 10px;
+  min-height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f8f9fc; /* Match Courses.css */
+}
+
+.ql-container {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fc; /* Match Courses.css */
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
 }
 
 .ql-container:hover {
-    border-color: #0078d4;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-color: #50C878; /* Match Courses.css */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .ql-toolbar {
-    background-color: #f4f4f4;
-    border-bottom: 1px solid #ddd;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  background-color: #f8f9fc; /* Match Courses.css */
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .ql-toolbar .ql-formats button {
-    background: none;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    margin: 2px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 14px;
-    color: #555;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 2px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
+  color: #555;
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
 }
 
 .ql-toolbar .ql-formats button:hover {
-    background-color: #eef6ff;
-    color: #0078d4;
+  background-color: #e6f0ff; /* Lighter shade */
+  color: #50C878; /* Match Courses.css */
 }
 
 .ql-toolbar .ql-formats button.ql-active {
-    background-color: #0078d4;
-    color: white;
+  background-color: #50C878; /* Match Courses.css */
+  color: white;
 }
 
-.ql-toolbar .ql-picker-label, 
+.ql-toolbar .ql-picker-label,
 .ql-toolbar .ql-picker-item {
-    color: #555;
-    cursor: pointer;
+  color: #555;
+  cursor: pointer;
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
 }
 
 .ql-toolbar .ql-picker-item:hover {
-    background-color: #eef6ff;
+  background-color: #e6f0ff; /* Lighter shade */
 }
 
 .ql-toolbar .ql-picker-item.ql-selected {
-    background-color: #0078d4;
-    color: white;
+  background-color: #50C878; /* Match Courses.css */
+  color: white;
 }
 
 .ql-editor {
-    padding: 16px;
-    min-height: 300px;
-    font-size: 16px;
-    line-height: 1.6;
-    background-color: #fff;
-    color: #333;
-    border-radius: 0 0 6px 6px;
+  padding: 16px;
+  min-height: 300px;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #f8f9fc; /* Match Courses.css */
+  color: #333;
+  border-radius: 0 0 6px 6px;
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
 }
 
 .ql-editor:focus {
-    background-color: #f9f9f9;
-    outline: none;
+  background-color: #e6f0ff; /* Lighter shade */
+  outline: none;
 }
 
 .ql-editor.ql-blank::before {
-    color: #a9a9a9;
-    font-style: italic;
-    font-size: 16px;
+  color: #a9a9a9;
+  font-style: italic;
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
 }
