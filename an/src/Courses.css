@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 20px;
   margin-left: 250px; /* Match sidebar width */
-  margin-top: 65px; /* Reduced to minimize header gap, match Dashboard.css */
+  margin-top: 65px; /* Match Dashboard.css */
   font-family: 'Segoe UI', sans-serif;
 }
 
@@ -52,6 +52,9 @@
   flex-direction: column;
   justify-content: space-between;
   color: #2C3E50;
+  aspect-ratio: 1/1; /* Square shape */
+  min-width: 200px; /* Minimum size for readability */
+  max-width: 300px; /* Cap width to prevent stretching */
 }
 
 .course-card:hover {
@@ -70,6 +73,7 @@
   margin: 0 0 10px;
   color: #555;
   font-size: 14px;
+  flex-grow: 1; /* Allow text to fill space */
 }
 
 .course-actions {
@@ -193,7 +197,7 @@
 @media (max-width: 768px) {
   .courses-content {
     margin-left: 60px; /* Match sidebar width */
-    margin-top: 50px; /* Reduced for mobile */
+    margin-top: 50px; /* Match Dashboard.css */
     padding: 15px;
   }
 
@@ -212,6 +216,8 @@
 
   .course-card {
     padding: 12px;
+    min-width: 150px; /* Smaller for mobile */
+    max-width: 250px;
   }
 
   .course-card h3 {
@@ -262,7 +268,7 @@
 @media (max-width: 480px) {
   .courses-content {
     margin-left: 50px; /* Match sidebar width */
-    margin-top: 45px; /* Reduced for mobile */
+    margin-top: 45px; /* Match Dashboard.css */
     padding: 10px;
   }
 
@@ -281,6 +287,8 @@
 
   .course-card {
     padding: 10px;
+    min-width: 120px; /* Smaller for small screens */
+    max-width: 200px;
   }
 
   .course-card h3 {
