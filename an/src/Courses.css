@@ -38,62 +38,6 @@
   width: 100%;
 }
 
-.course-card {
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #2C3E50;
-  aspect-ratio: 1/1; /* Square shape */
-  min-width: 200px; /* Minimum size for readability */
-  max-width: 300px; /* Cap width to prevent stretching */
-}
-
-.course-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.course-card h3 {
-  margin: 0 0 10px;
-  color: #2C3E50;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.course-card p {
-  margin: 0 0 10px;
-  color: #555;
-  font-size: 14px;
-  flex-grow: 1; /* Allow text to fill space */
-}
-
-.course-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.course-actions .button {
-  flex: 1;
-  text-align: center;
-  padding: 8px;
-  background-color: #50C878;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.course-actions .button:hover {
-  background-color: #45A563;
-}
-
 .add-course-button {
   position: fixed;
   bottom: 20px;
@@ -129,65 +73,15 @@
   background-color: #f8f9fc; /* Match app background */
 }
 
-.course-form {
-  background-color: #ffffff;
-  padding: 20px;
+.error {
+  background-color: #ffe6e6;
+  color: #ff0000;
+  padding: 10px;
   border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.course-form h2 {
-  text-align: center;
   margin-bottom: 20px;
-  color: #50C878;
-  font-size: 20px;
-  font-weight: 600;
-}
-
-.course-form input[type="text"],
-.course-form input[type="color"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
-}
-
-.course-form .form-buttons {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.course-form button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-}
-
-.course-form button:first-child {
-  background-color: #50C878;
-  color: white;
-}
-
-.course-form button:first-child:hover {
-  background-color: #45A563;
-}
-
-.course-form button:last-child {
-  background-color: #B0BEC5;
-  color: #2C3E50;
-}
-
-.course-form button:last-child:hover {
-  background-color: #A3BFFA;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Adjustments */
@@ -208,25 +102,6 @@
     gap: 15px;
   }
 
-  .course-card {
-    padding: 12px;
-    min-width: 150px; /* Smaller for mobile */
-    max-width: 250px;
-  }
-
-  .course-card h3 {
-    font-size: 16px;
-  }
-
-  .course-card p {
-    font-size: 13px;
-  }
-
-  .course-actions .button {
-    padding: 8px;
-    font-size: 13px;
-  }
-
   .add-course-button {
     width: 50px;
     height: 50px;
@@ -236,26 +111,6 @@
   .course-form-container {
     padding: 15px;
     min-height: calc(100vh - 50px); /* Adjust for mobile header */
-  }
-
-  .course-form {
-    padding: 15px;
-    max-width: 90%; /* Slightly narrower for mobile */
-  }
-
-  .course-form h2 {
-    font-size: 18px;
-  }
-
-  .course-form input[type="text"],
-  .course-form input[type="color"] {
-    padding: 8px;
-    font-size: 13px;
-  }
-
-  .course-form button {
-    padding: 8px;
-    font-size: 13px;
   }
 }
 
@@ -276,25 +131,6 @@
     gap: 10px;
   }
 
-  .course-card {
-    padding: 10px;
-    min-width: 120px; /* Smaller for small screens */
-    max-width: 200px;
-  }
-
-  .course-card h3 {
-    font-size: 14px;
-  }
-
-  .course-card p {
-    font-size: 12px;
-  }
-
-  .course-actions .button {
-    padding: 6px;
-    font-size: 12px;
-  }
-
   .add-course-button {
     width: 45px;
     height: 45px;
@@ -304,25 +140,5 @@
   .course-form-container {
     padding: 10px;
     min-height: calc(100vh - 45px); /* Adjust for mobile header */
-  }
-
-  .course-form {
-    padding: 10px;
-    max-width: 95%; /* Full width for smaller screens */
-  }
-
-  .course-form h2 {
-    font-size: 16px;
-  }
-
-  .course-form input[type="text"],
-  .course-form input[type="color"] {
-    padding: 6px;
-    font-size: 12px;
-  }
-
-  .course-form button {
-    padding: 6px;
-    font-size: 12px;
   }
 }
