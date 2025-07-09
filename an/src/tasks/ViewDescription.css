@@ -1,19 +1,19 @@
 .add-task-form {
   padding: 40px;
-  background-color: #f8f9fc; /* Match Courses.css */
+  background-color: #f8f9fc; /* Match Dashboard.css */
   border-radius: 10px;
   width: 60%;
   max-width: 800px;
   margin: 100px auto 0 auto; /* Overridden by Tasks.css */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
 }
 
 .add-task-form h2 {
   text-align: center;
   margin-bottom: 20px;
-  color: #50C878; /* Match Courses.css */
+  color: #50C878; /* Match Dashboard.css */
   font-size: 24px;
 }
 
@@ -25,7 +25,7 @@
   display: block;
   margin-bottom: 5px;
   color: #555;
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
 }
 
 .form-field input,
@@ -37,13 +37,13 @@
   border-radius: 5px;
   font-size: 14px;
   transition: border-color 0.3s;
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
 }
 
 .form-field input:focus,
 .form-field textarea:focus,
 .form-field select:focus {
-  border-color: #50C878; /* Match Courses.css */
+  border-color: #50C878; /* Match Dashboard.css */
   outline: none;
 }
 
@@ -55,17 +55,17 @@
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
-  background-color: #50C878; /* Match Courses.css */
+  background-color: #50C878; /* Match Dashboard.css */
   color: white;
   cursor: pointer;
   margin-right: 10px;
   transition: background-color 0.3s;
   font-size: 14px;
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
 }
 
 .form-field button:hover {
-  background-color: #45A563; /* Match Courses.css */
+  background-color: #45A563; /* Match Dashboard.css */
 }
 
 .form-field button:last-child {
