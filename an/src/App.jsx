@@ -53,14 +53,22 @@ const App = () => {
   };
 
   const PrivateRoute = ({ element: Component, ...rest }) => {
-    return isAuthenticated ? <Component {...rest} /> : <Navigate to="/login" />;
+    return isAuthenticated ? (
+      <div className="app-container">
+        <Sidebar />
+        <Header />
+        <main className="main-content">
+          <Component {...rest} />
+        </main>
+      </div>
+    ) : (
+      <Navigate to="/login" />
+    );
   };
 
   return (
     <Router>
       <div className="app-container">
-        {isAuthenticated && <Sidebar />}
-        {isAuthenticated && <Header />}
         <main className="main-content">
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
