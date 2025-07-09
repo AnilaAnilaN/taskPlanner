@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 20px;
   margin-left: 250px; /* Match sidebar width */
-  margin-top: 65px; /* Match Dashboard.css */
+  margin-top: 55px;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f8f9fc; /* Match app background */
   min-height: calc(100vh - 65px); /* Fill viewport minus header */
@@ -66,10 +66,15 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px; /* Move form slightly upward */
+  margin-top: 10px; /* Move form more upward */
   margin-top: 0 !important; /* Override AddEditCourseForm.css */
   padding: 20px;
   background-color: #f8f9fc; /* Match app background */
+}
+
+.course-form {
+  max-width: 450px; /* Default, same as AddEditCourseForm.css */
+  width: 100%;
 }
 
 .error {
@@ -108,9 +113,37 @@
   }
 
   .course-form-container {
-    margin-top: 15px; /* Move form slightly upward */
+    margin-top: 8px; /* Move form more upward */
     margin-top: 0 !important; /* Override AddEditCourseForm.css */
     padding: 15px;
+  }
+
+  .course-form {
+    max-width: 380px; /* Scale horizontally */
+    padding: 20px; /* Scale vertically */
+  }
+
+  .course-form h2 {
+    font-size: 1.2rem; /* Smaller heading */
+  }
+
+  .course-form .form-field label {
+    font-size: 0.9rem; /* Smaller labels */
+  }
+
+  .course-form .input-field {
+    font-size: 0.9rem; /* Smaller input text */
+    padding: 10px; /* Smaller input padding */
+  }
+
+  .course-form .form-buttons button {
+    font-size: 0.9rem; /* Smaller button text */
+    padding: 10px; /* Smaller button padding */
+  }
+
+  .course-form .error-message {
+    font-size: 0.9rem; /* Smaller error text */
+    padding: 8px; /* Smaller error padding */
   }
 }
 
@@ -138,8 +171,36 @@
   }
 
   .course-form-container {
-    margin-top: 10px; /* Move form slightly upward */
+    margin-top: 6px; /* Move form more upward */
     margin-top: 0 !important; /* Override AddEditCourseForm.css */
     padding: 10px;
+  }
+
+  .course-form {
+    max-width: 320px; /* Scale horizontally */
+    padding: 15px; /* Scale vertically */
+  }
+
+  .course-form h2 {
+    font-size: 1rem; /* Smaller heading */
+  }
+
+  .course-form .form-field label {
+    font-size: 0.8rem; /* Smaller labels */
+  }
+
+  .course-form .input-field {
+    font-size: 0.8rem; /* Smaller input text */
+    padding: 8px; /* Smaller input padding */
+  }
+
+  .course-form .form-buttons button {
+    font-size: 0.8rem; /* Smaller button text */
+    padding: 8px; /* Smaller button padding */
+  }
+
+  .course-form .error-message {
+    font-size: 0.8rem; /* Smaller error text */
+    padding: 6px; /* Smaller error padding */
   }
 }
