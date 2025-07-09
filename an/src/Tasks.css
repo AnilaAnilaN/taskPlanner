@@ -1,16 +1,16 @@
 .tasks-page {
   display: flex;
-  background-color: #f8f9fc; /* Match Courses.css */
+  background-color: #f8f9fc; /* Match Dashboard.css */
   min-height: 100vh;
 }
 
 .main-content {
+  margin-left: 250px; /* Match Dashboard.css sidebar */
   margin-top: 20px; /* Specified margin-top */
-  margin-left: 0; /* No sidebar */
   padding: 20px;
-  width: 100%; /* Full width */
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
-  background-color: #f8f9fc; /* Match Courses.css */
+  width: calc(100% - 250px); /* Match Dashboard.css */
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
+  background-color: #f8f9fc; /* Match Dashboard.css */
 }
 
 .add-task-form {
@@ -19,12 +19,11 @@
   max-width: 900px; /* Default */
   width: 70%;
   padding: 40px; /* Default */
-  background-color: #f8f9fc; /* Match Courses.css */
+  background-color: #f8f9fc; /* Match Dashboard.css */
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 10;
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
 }
 
 .error {
@@ -36,14 +35,16 @@
   text-align: center;
   font-weight: bold;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+  font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .main-content {
+    margin-left: 60px;
     margin-top: 15px; /* Responsive margin-top */
     padding: 15px;
+    width: calc(100% - 60px);
   }
 
   .add-task-form {
@@ -84,8 +85,10 @@
 
 @media (max-width: 480px) {
   .main-content {
+    margin-left: 50px;
     margin-top: 10px; /* Responsive margin-top */
     padding: 10px;
+    width: calc(100% - 50px);
   }
 
   .add-task-form {
