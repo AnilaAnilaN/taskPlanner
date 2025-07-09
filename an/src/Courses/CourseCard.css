@@ -1,17 +1,15 @@
-course-card {
+.course-card {
   padding: 20px;
   border-radius: 12px; /* Increased border radius for a smoother look */
   text-align: center;
   font-weight: bold;
-  height: 180px; /* Adjusted height to accommodate instructor */
+  height: 180px; /* Square shape for desktop */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-top: 30px; /* Reduced margin to fit more cards on the screen */
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Added a stronger shadow */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow */
   transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transition for hover effect */
   cursor: pointer;
- 
 }
 
 .course-card:hover {
@@ -47,4 +45,45 @@ course-card {
 
 .course-actions button:hover {
   color: #ffd700; /* Gold highlight on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .course-card {
+    height: 150px; /* Smaller for mobile */
+    padding: 15px;
+  }
+
+  .course-card h3 {
+    font-size: 18px;
+  }
+
+  .course-card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .course-actions button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .course-card {
+    height: 120px; /* Smaller for small screens */
+    padding: 10px;
+  }
+
+  .course-card h3 {
+    font-size: 16px;
+  }
+
+  .course-card p {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .course-actions button {
+    font-size: 14px;
+  }
 }
