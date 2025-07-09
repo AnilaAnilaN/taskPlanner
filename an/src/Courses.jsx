@@ -61,7 +61,7 @@ const Courses = () => {
     <div className="courses-content">
       {error && <p className="error">{error}</p>}
       {view === 'list' && (
-        <div className="courses-section">
+        <>
           <h2>Manage Your Courses</h2>
           <div className="course-list">
             {courses.map(course => (
@@ -79,7 +79,7 @@ const Courses = () => {
           <button className="add-course-button" onClick={() => setView('add')}>
             +
           </button>
-        </div>
+        </>
       )}
       {(view === 'add' || view === 'edit') && (
         <div className="course-form-container">
