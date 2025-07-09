@@ -66,10 +66,10 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 65px; /* Match courses-content and Dashboard.css */
+  margin-top: 20px; /* Move form slightly upward */
+  margin-top: 0 !important; /* Override AddEditCourseForm.css */
   padding: 20px;
   background-color: #f8f9fc; /* Match app background */
-  margin-left: 250px; /* Match sidebar width */
 }
 
 .error {
@@ -108,8 +108,8 @@
   }
 
   .course-form-container {
-    margin-left: 60px; /* Match sidebar width */
-    margin-top: 50px; /* Match courses-content */
+    margin-top: 15px; /* Move form slightly upward */
+    margin-top: 0 !important; /* Override AddEditCourseForm.css */
     padding: 15px;
   }
 }
@@ -138,8 +138,8 @@
   }
 
   .course-form-container {
-    margin-left: 50px; /* Match sidebar width */
-    margin-top: 45px; /* Match courses-content */
+    margin-top: 10px; /* Move form slightly upward */
+    margin-top: 0 !important; /* Override AddEditCourseForm.css */
     padding: 10px;
   }
 }
