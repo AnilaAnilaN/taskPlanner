@@ -5,16 +5,12 @@
   margin-left: 250px; /* Match sidebar width */
   margin-top: 65px; /* Match Dashboard.css */
   font-family: 'Segoe UI', sans-serif;
-}
-
-.courses-section {
-  background-color: #ffffff;
+  background-color: #f8f9fc; /* Match app background */
+  min-height: calc(100vh - 65px); /* Fill viewport minus header */
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.courses-section h2 {
+.courses-content h2 {
   margin-top: 0;
   margin-bottom: 20px;
   color: #50C878; /* Match Dashboard.css */
@@ -24,7 +20,7 @@
   position: relative;
 }
 
-.courses-section h2::after {
+.courses-content h2::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -130,6 +126,7 @@
   width: 100%;
   min-height: calc(100vh - 65px); /* Account for header and margin */
   padding: 20px;
+  background-color: #f8f9fc; /* Match app background */
 }
 
 .course-form {
@@ -199,13 +196,10 @@
     margin-left: 60px; /* Match sidebar width */
     margin-top: 50px; /* Match Dashboard.css */
     padding: 15px;
+    min-height: calc(100vh - 50px); /* Adjust for mobile header */
   }
 
-  .courses-section {
-    padding: 15px;
-  }
-
-  .courses-section h2 {
+  .courses-content h2 {
     font-size: 20px;
   }
 
@@ -270,13 +264,10 @@
     margin-left: 50px; /* Match sidebar width */
     margin-top: 45px; /* Match Dashboard.css */
     padding: 10px;
+    min-height: calc(100vh - 45px); /* Adjust for mobile header */
   }
 
-  .courses-section {
-    padding: 10px;
-  }
-
-  .courses-section h2 {
+  .courses-content h2 {
     font-size: 18px;
   }
 
