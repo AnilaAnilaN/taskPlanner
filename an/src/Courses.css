@@ -11,8 +11,7 @@
 }
 
 .courses-content h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
+  margin: 0 0 20px;
   color: #50C878; /* Match Dashboard.css */
   font-size: 24px;
   font-weight: 600;
@@ -71,6 +70,7 @@
   min-height: calc(100vh - 65px); /* Account for header and margin */
   padding: 20px;
   background-color: #f8f9fc; /* Match app background */
+  margin-top: 0; /* Override AddEditCourseForm.css */
 }
 
 .error {
