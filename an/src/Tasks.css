@@ -6,7 +6,7 @@
 
 .main-content {
   margin-top: 20px; /* Specified margin-top */
-  margin-left: 0; /* No sidebar */
+  margin-left: 250px;
   padding: 20px;
   width: 100%; /* Full width */
   font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
