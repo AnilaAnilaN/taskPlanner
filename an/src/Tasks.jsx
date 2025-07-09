@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getTasks, createTask, updateTask, deleteTask, getCourses } from './api'; // Import API functions
-import Sidebar from './Sidebar';
-import Header from './Header';
+import { getTasks, createTask, updateTask, deleteTask, getCourses } from './api';
 import TaskList from './tasks/TaskList';
 import AddTask from './tasks/AddTask';
 import EditTask from './tasks/EditTask';
@@ -24,7 +22,7 @@ const Tasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const response = await getTasks(); // Use getTasks from api.js
+      const response = await getTasks();
       setTasks(response.data);
     } catch (error) {
       console.error('Error fetching tasks:', error);
@@ -34,7 +32,7 @@ const Tasks = () => {
 
   const fetchCourses = async () => {
     try {
-      const response = await getCourses(); // Use getCourses from api.js
+      const response = await getCourses();
       setCourses(response.data);
     } catch (error) {
       console.error('Error fetching courses:', error);
@@ -44,7 +42,7 @@ const Tasks = () => {
 
   const addTask = async (task) => {
     try {
-      const response = await createTask(task); // Use createTask from api.js
+      const response = await createTask(task);
       setTasks([...tasks, response.data]);
     } catch (error) {
       console.error('Error adding task:', error);
@@ -54,7 +52,7 @@ const Tasks = () => {
 
   const updateTaskStatus = async (id, status) => {
     try {
-      const response = await updateTask(id, { status }); // Use updateTask from api.js
+      const response = await updateTask(id, { status });
       setTasks(tasks.map(task => (task._id === id ? response.data : task)));
     } catch (error) {
       console.error('Error updating task status:', error);
@@ -64,7 +62,7 @@ const Tasks = () => {
 
   const updateTask = async (task) => {
     try {
-      const response = await updateTask(task._id, task); // Use updateTask from api.js
+      const response = await updateTask(task._id, task);
       setTasks(tasks.map(t => (t._id === task._id ? response.data : t)));
       setView('list');
     } catch (error) {
@@ -75,7 +73,7 @@ const Tasks = () => {
 
   const deleteTask = async (taskId) => {
     try {
-      await deleteTask(taskId); // Use deleteTask from api.js
+      await deleteTask(taskId);
       setTasks(tasks.filter(task => task._id !== taskId));
     } catch (error) {
       console.error('Error deleting task:', error);
@@ -85,9 +83,7 @@ const Tasks = () => {
 
   return (
     <div className="tasks-page">
-      <Sidebar />
       <div className="main-content">
-        <Header title="Tasks" />
         {error && <p className="error">{error}</p>}
         {view === 'list' && <TaskList
           tasks={tasks}
