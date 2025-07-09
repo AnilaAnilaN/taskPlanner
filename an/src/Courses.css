@@ -1,53 +1,97 @@
-courses-container {
+.courses-container {
   display: flex;
-  height: calc(100vh - 60px); /* Assuming the header is 60px high */
-  padding-top: 60px; /* To account for the header height */
+  min-height: 100vh;
+  background-color: #f8f9fc;
 }
 
 .courses-main-content {
   flex-grow: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 20px;
-  background-color: #f8f9fc;
-  margin-left: 250px; /* Adjust based on your sidebar width */
+  margin-left: 250px; /* Match sidebar width */
+  margin-top: 60px; /* Match header height */
+}
+
+.courses-section {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.courses-section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #50C878;
+  font-size: 24px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  position: relative;
+}
+
+.courses-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #50C878;
+  border-radius: 4px;
 }
 
 .course-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* Four cards per row on desktop */
   gap: 20px;
   width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  margin-top: 100px;
 }
 
 .course-card {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 20px;
-  border-radius: 8px;
-  color: white;
-  text-align: center;
-  font-weight: bold;
-  height: 150px;
-  margin-top: 50px;
+  color: #2C3E50;
+}
 
+.course-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.course-card h3 {
+  margin: 0 0 10px;
+  color: #2C3E50;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.course-card p {
+  margin: 0 0 10px;
+  color: #555;
+  font-size: 14px;
 }
 
 .course-actions {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
+}
+
+.course-actions .button {
+  flex: 1;
+  text-align: center;
 }
 
 .add-course-button {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background-color: #007bff;
+  background-color: #50C878;
   color: #fff;
   font-size: 24px;
   border: none;
@@ -59,56 +103,216 @@ courses-container {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.add-course-button:hover {
+  background-color: #45A563;
+  transform: translateY(-2px);
 }
 
 .course-form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
+  padding: 20px;
+  min-height: calc(100vh - 60px);
 }
 
 .course-form {
   background-color: #ffffff;
-  padding: 30px;
+  padding: 20px;
   border-radius: 8px;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .course-form h2 {
   text-align: center;
   margin-bottom: 20px;
+  color: #50C878;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .course-form input[type="text"],
 .course-form input[type="color"] {
   width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  font-size: 14px;
 }
 
 .course-form .form-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
 .course-form button {
-  padding: 10px 20px;
+  flex: 1;
+  padding: 10px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
 }
 
 .course-form button:first-child {
-  background-color: #000;
+  background-color: #50C878;
   color: white;
 }
 
+.course-form button:first-child:hover {
+  background-color: #45A563;
+}
+
 .course-form button:last-child {
-  background-color: #ccc;
-  color: black;
+  background-color: #B0BEC5;
+  color: #2C3E50;
+}
+
+.course-form button:last-child:hover {
+  background-color: #A3BFFA;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .courses-main-content {
+    margin-left: 60px;
+    margin-top: 50px;
+    padding: 15px;
+  }
+
+  .courses-section {
+    padding: 15px;
+  }
+
+  .courses-section h2 {
+    font-size: 20px;
+  }
+
+  .course-list {
+    grid-template-columns: 1fr; /* One card per row */
+    gap: 15px;
+  }
+
+  .course-card {
+    padding: 12px;
+  }
+
+  .course-card h3 {
+    font-size: 16px;
+  }
+
+  .course-card p {
+    font-size: 13px;
+  }
+
+  .course-actions .button {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .add-course-button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .course-form-container {
+    padding: 15px;
+  }
+
+  .course-form {
+    padding: 15px;
+  }
+
+  .course-form h2 {
+    font-size: 18px;
+  }
+
+  .course-form input[type="text"],
+  .course-form input[type="color"] {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .course-form button {
+    padding: 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .courses-main-content {
+    margin-left: 50px;
+    margin-top: 45px;
+    padding: 10px;
+  }
+
+  .courses-section {
+    padding: 10px;
+  }
+
+  .courses-section h2 {
+    font-size: 18px;
+  }
+
+  .course-list {
+    grid-template-columns: 1fr; /* One card per row */
+    gap: 10px;
+  }
+
+  .course-card {
+    padding: 10px;
+  }
+
+  .course-card h3 {
+    font-size: 14px;
+  }
+
+  .course-card p {
+    font-size: 12px;
+  }
+
+  .course-actions .button {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .add-course-button {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .course-form-container {
+    padding: 10px;
+  }
+
+  .course-form {
+    padding: 10px;
+  }
+
+  .course-form h2 {
+    font-size: 16px;
+  }
+
+  .course-form input[type="text"],
+  .course-form input[type="color"] {
+    padding: 6px;
+    font-size: 12px;
+  }
+
+  .course-form button {
+    padding: 6px;
+    font-size: 12px;
+  }
 }
