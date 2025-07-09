@@ -8,13 +8,14 @@
   margin-left: 250px; /* Space for app-level sidebar */
   margin-top: 20px; /* Specified margin-top */
   padding: 20px;
-  width: calc(100% - 250px); /* Center within remaining space */
+  width: calc(100% - 250px); /* Fill remaining space */
   font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
   background-color: #f8f9fc; /* Match Dashboard.css */
+  overflow: visible; /* Prevent clipping */
 }
 
 .add-task-form {
-  margin: 0 auto !important; /* Override AddTask.css/EditTask.css/ViewDescription.css */
+  margin: 0 auto !important; /* Center and override AddTask.css/EditTask.css/ViewDescription.css */
   margin-top: -10px; /* Move form upward */
   max-width: 900px; /* Default */
   width: 70%;
@@ -37,6 +38,9 @@
   font-weight: bold;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   font-family: 'Segoe UI', sans-serif; /* Match Dashboard.css */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px; /* Match add-task-form */
 }
 
 /* Responsive Adjustments */
