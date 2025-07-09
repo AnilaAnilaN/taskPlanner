@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { getTasks } from './api';
+import Sidebar from './Sidebar';
+import Header from './Header';
 import Dashboard from './Dashboard';
 import Tasks from './Tasks';
 import Courses from './Courses';
@@ -57,6 +59,8 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
+        {isAuthenticated && <Sidebar />}
+        {isAuthenticated && <Header />}
         <main className="main-content">
           <Routes>
             <Route path="/register" element={<RegisterPage />} />
