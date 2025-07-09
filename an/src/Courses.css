@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 20px;
   margin-left: 250px; /* Match sidebar width */
-  margin-top: 55px;
+  margin-top: 35px;
   font-family: 'Segoe UI', sans-serif;
   background-color: #f8f9fc; /* Match app background */
   min-height: calc(100vh - 65px); /* Fill viewport minus header */
