@@ -102,7 +102,7 @@ const Tasks = () => {
           courses={courses}
           setView={setView}
         />}
-        {view === 'edit' && <EditTask
+{view === 'edit' && <EditTask
           selectedTask={selectedTask}
           courses={courses}
           updateTask={updateTask}
