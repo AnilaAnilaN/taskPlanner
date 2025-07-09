@@ -1,12 +1,125 @@
-/* Styles for the main task page layout */
 .tasks-page {
-  display: flex; /* Arranges sidebar and content side by side */
-  background-color: #EFEFEF; /* Sets background color for the page */
+  display: flex;
+  background-color: #f8f9fc; /* Match Courses.css */
+  min-height: 100vh;
 }
 
-/* Styling for the task container section */
-.tasks {
-  margin-left: 260px; /* Adds space for the sidebar */
-  padding: 20px; /* Adds space inside the task section */
-  width: calc(100% - 260px); /* Takes up the remaining width after sidebar */
+.main-content {
+  margin-top: 20px; /* Specified margin-top */
+  margin-left: 0; /* No sidebar */
+  padding: 20px;
+  width: 100%; /* Full width */
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+  background-color: #f8f9fc; /* Match Courses.css */
+}
+
+.add-task-form {
+  margin: 0 auto !important; /* Override AddTask.css/EditTask.css/ViewDescription.css */
+  margin-top: -10px; /* Move form upward within main-content */
+  max-width: 900px; /* Default */
+  width: 70%;
+  padding: 40px; /* Default */
+  background-color: #f8f9fc; /* Match Courses.css */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+}
+
+.error {
+  background-color: #ffe6e6;
+  color: #ff0000;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif; /* Match Courses.css */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 15px; /* Responsive margin-top */
+    padding: 15px;
+  }
+
+  .add-task-form {
+    margin-top: -8px; /* Move form upward */
+    max-width: 700px; /* Scale horizontally */
+    padding: 30px; /* Scale vertically */
+  }
+
+  .add-task-form h2 {
+    font-size: 1.2rem; /* Smaller heading */
+  }
+
+  .add-task-form .form-field label {
+    font-size: 0.9rem; /* Smaller labels */
+  }
+
+  .add-task-form .form-field input,
+  .add-task-form .form-field select,
+  .add-task-form .form-field textarea {
+    font-size: 0.9rem; /* Smaller input text */
+    padding: 10px; /* Smaller padding */
+  }
+
+  .add-task-form .form-field button {
+    font-size: 0.9rem; /* Smaller button text */
+    padding: 10px; /* Smaller padding */
+  }
+
+  .add-task-form .error {
+    font-size: 0.9rem; /* Smaller error text */
+    padding: 8px;
+  }
+
+  .add-task-form .back-button {
+    font-size: 0.9rem; /* Smaller back button */
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    margin-top: 10px; /* Responsive margin-top */
+    padding: 10px;
+  }
+
+  .add-task-form {
+    margin-top: -6px; /* Move form upward */
+    max-width: 600px; /* Scale horizontally */
+    padding: 20px; /* Scale vertically */
+  }
+
+  .add-task-form h2 {
+    font-size: 1rem; /* Smaller heading */
+  }
+
+  .add-task-form .form-field label {
+    font-size: 0.8rem; /* Smaller labels */
+  }
+
+  .add-task-form .form-field input,
+  .add-task-form .form-field select,
+  .add-task-form .form-field textarea {
+    font-size: 0.8rem; /* Smaller input text */
+    padding: 8px; /* Smaller padding */
+  }
+
+  .add-task-form .form-field button {
+    font-size: 0.8rem; /* Smaller button text */
+    padding: 8px; /* Smaller padding */
+  }
+
+  .add-task-form .error {
+    font-size: 0.8rem; /* Smaller error text */
+    padding: 6px;
+  }
+
+  .add-task-form .back-button {
+    font-size: 0.8rem; /* Smaller back button */
+  }
 }
